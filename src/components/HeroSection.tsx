@@ -16,12 +16,9 @@ const HeroSection = () => {
   });
 
   const { showParticipationForm, setShowParticipationForm } = useFormStore();
-  console.log(showParticipationForm);
-  console.log("showParticipationForm  before click", showParticipationForm);
 
   function setShowParticipation() {
     setShowParticipationForm(true);
-    console.log(showParticipationForm);
   }
   useEffect(() => {
     const targetDate = new Date("2025-10-06T00:00:00");

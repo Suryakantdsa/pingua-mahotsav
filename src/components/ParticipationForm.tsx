@@ -22,7 +22,7 @@ import { useFormStore } from "@/store/useFormStore";
 
 const ParticipationForm = () => {
   const { showParticipationForm, setShowParticipationForm } = useFormStore();
-  console.log(showParticipationForm);
+
   if (!showParticipationForm) return null;
 
   return (
