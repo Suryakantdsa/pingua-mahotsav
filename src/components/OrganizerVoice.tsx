@@ -6,7 +6,7 @@ import Image from "next/image";
 const OrganizerVoice = () => {
   const organizers = [
     {
-      name: "Shri Niranjan Sahoo",
+      name: "Shri Ashutosh Sahoo",
       position: "Festival President",
       message:
         "Our Pingua Mahotsav represents the rich cultural heritage that has been passed down through generations. This festival brings our community together in celebration of our traditions and values.",
@@ -22,7 +22,7 @@ const OrganizerVoice = () => {
         "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
     },
     {
-      name: "Shri Prakash Panda",
+      name: "Shri Abinash Rout",
       position: "Cultural Coordinator",
       message:
         "The cultural programs during our festival showcase the diverse talents within our community and inspire the younger generation to embrace our heritage.",
