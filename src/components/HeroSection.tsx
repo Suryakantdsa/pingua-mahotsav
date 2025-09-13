@@ -106,9 +106,9 @@ const HeroSection = () => {
         </div>
         <Badge
           variant="outline"
-          className="text-base sm:text-lg px-6 py-2 border-yellow-300 text-yellow-300 mb-8 "
+          className="text-base sm:text-lg px-4 py-2 border-yellow-300 text-yellow-300 mb-6"
         >
-          6th - 12th October 2025 | लक्ष्मी पूजा विशेष
+          ୬-୧୨ ଅକ୍ଟୋବର ୨୦୨୫ | ଲକ୍ଷ୍ମୀ ପୂଜା ବିଶେଷ
         </Badge>
       </div>
     </section>
