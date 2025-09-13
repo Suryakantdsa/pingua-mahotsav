@@ -90,7 +90,7 @@ const DeveloperInfo = () => {
               <h4 className="mt-4 text-lg font-bold text-gray-900">
                 Suryakant Das
               </h4>
-              <p className="text-xs text-gray-600">Full Stack Developer</p>
+              <p className="text-xs text-gray-600">Software Developer</p>
 
               {/* Description */}
               <p className="text-xs text-gray-500 mt-3 leading-relaxed">

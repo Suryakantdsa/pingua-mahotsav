@@ -13,9 +13,9 @@ const SponsorsAndPartners = () => {
       name: "Rising Star Club, 2012 Batch, Pingua High School",
       type: "Website Sponsor",
     },
-    { name: "Gopinath Industries", type: "Platinum Sponsor" },
-    { name: "Mahalaxmi Traders", type: "Gold Sponsor" },
-    { name: "Shree Jagannath Medical Store", type: "Healthcare Partner" },
+    { name: "Mahalik electrical and Electronics", type: "Platinum Sponsor" },
+    { name: "Ramachandi Jewellers", type: "Gold Sponsor" },
+    { name: "Shree Jagannath Electrical Store", type: "Healthcare Partner" },
     { name: "Odisha Cultural Association", type: "Cultural Partner" },
     { name: "Local Youth Club", type: "Volunteer Support" },
   ];
