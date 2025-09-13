@@ -106,9 +106,9 @@ const EventSchedule = () => {
                     <Button
                       onClick={() => setShowBloodDonationForm(true)}
                       variant="outline"
-                      className="border-red-500 text-red-600 hover:bg-red-50"
+                      className="flex items-center border-red-500 text-white bg-white hover:bg-red-50 duration-300 focus:ring-2 focus:ring-red-300  text-base sm:text-xl rounded-full bg-gradient-to-r from-pink-600 to-red-500 transition-all transform hover:scale-105 shadow-2xl animate-pulse px-4 py-2 cursor-pointer"
                     >
-                      <Heart className="h-4 w-4 mr-2" />
+                      <Heart className="h-4 w-4 mr-2 text-white" />
                       Register to Donate
                     </Button>
                   )}
