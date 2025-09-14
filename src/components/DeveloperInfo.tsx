@@ -78,7 +78,7 @@ const DeveloperInfo = () => {
               </div>
 
               {/* Name, Role & Description */}
-              <div className="flex flex-col justify-center">
+              <div className="flex flex-col justify-center py-2">
                 <h4 className="text-lg font-bold text-gray-900">
                   Suryakant Das
                 </h4>
