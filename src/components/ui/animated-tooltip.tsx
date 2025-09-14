@@ -32,7 +32,7 @@ export const AnimatedTooltip = ({
     useTransform(x, [-100, 100], [-50, 50]),
     springConfig
   );
-
+  // @typescript-eslint/no-explicit-any
   const handleMouseMove = (event: any) => {
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
@@ -46,7 +46,7 @@ export const AnimatedTooltip = ({
 
   return (
     <div className=" flex flex-wrap justify-center gap-y-4 ">
-      {items.map((item, idx) => (
+      {items.map((item) => (
         <div
           className="group relative -mr-2 sm:-mr-1.5"
           key={item.name}

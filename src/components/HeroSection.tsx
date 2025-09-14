@@ -15,7 +15,7 @@ const HeroSection = () => {
     seconds: 0,
   });
 
-  const { showParticipationForm, setShowParticipationForm } = useFormStore();
+  const { setShowParticipationForm } = useFormStore();
 
   function setShowParticipation() {
     setShowParticipationForm(true);

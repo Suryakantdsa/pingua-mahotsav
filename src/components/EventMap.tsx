@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Guitar, ParkingCircle, HospitalIcon, Shield } from "lucide-react";
+import Image from "next/image";
 
 const EventMap = () => {
   const [active, setActive] = useState<string | null>(null);
@@ -59,9 +60,11 @@ const EventMap = () => {
         <Card className="overflow-hidden">
           <CardContent className="p-0 relative">
             <div className="relative w-full aspect-[16/9]">
-              <img
+              <Image
                 src="https://storage.googleapis.com/pingua-mahotsav/map.png"
                 alt="Festival Venue Map"
+                width={100}
+                height={100}
                 className="w-full h-full object-cover"
               />
 
