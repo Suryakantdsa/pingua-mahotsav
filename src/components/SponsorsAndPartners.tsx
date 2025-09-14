@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "./ui/button";
-import { Award, HeartHandshake, Store, Users } from "lucide-react";
+import { Award, HeartHandshake, Users } from "lucide-react";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { useFormStore } from "@/store/useFormStore";

@@ -65,7 +65,7 @@ const OrganizerVoice = () => {
     },
   ];
 
-  const [sliderRef, slider] = useKeenSlider(
+  const [sliderRef] = useKeenSlider(
     {
       loop: true,
       slides: { perView: 1, spacing: 16 },

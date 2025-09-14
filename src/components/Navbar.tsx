@@ -1,5 +1,4 @@
 import React from "react";
-import { Sparkles } from "lucide-react";
 import Image from "next/image";
 const Navbar = () => {
   return (
