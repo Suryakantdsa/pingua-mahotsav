@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Music } from "lucide-react";
+import { Music, ArrowRight } from "lucide-react";
 import heroBackground from "@/assets/hero-bg.jpg";
 import { Card } from "./ui/card";
 import { useFormStore } from "@/store/useFormStore";
@@ -68,11 +68,20 @@ const HeroSection = () => {
 
           <Button
             onClick={() => setShowParticipation()}
-            className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold  py-5  text-base sm:text-xl rounded-full transition-all transform hover:scale-105 shadow-2xl animate-pulse cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 
+             bg-gradient-to-r from-yellow-400 to-orange-500 
+             hover:from-yellow-500 hover:to-orange-600 
+             text-black font-semibold rounded-full 
+             shadow-lg hover:shadow-xl 
+             transition-all duration-200 transform hover:scale-105"
           >
-            <Music className="mr-2 h-5 w-5" />
-            ସାଂସ୍କୃତିକ କାର୍ଯ୍ୟକ୍ରମରେ ଯୋଗଦାନ କରନ୍ତୁ
+            <Music className="h-5 w-5" />
+            <span className="text-base sm:text-lg">
+              ସାଂସ୍କୃତିକ କାର୍ଯ୍ୟକ୍ରମରେ ଯୋଗଦାନ କରନ୍ତୁ
+            </span>
+            <ArrowRight className="h-5 w-5" />
           </Button>
+
           <p className="text-sm text-orange-200 mt-4">
             Join Our Cultural Programs - Share Your Talent!
           </p>
