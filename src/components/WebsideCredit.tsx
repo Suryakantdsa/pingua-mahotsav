@@ -37,7 +37,7 @@ const WebsideCredit = () => {
               className="w-28 h-28 rounded-full shadow-md mb-4 object-cover"
             />
             <h4 className="text-lg font-bold text-gray-900">
-              Shri Ashish Kumar Sahoo
+              Ashish Kumar Sahoo
             </h4>
             <p className="text-sm text-orange-600 font-semibold">
               Planning & Ideas

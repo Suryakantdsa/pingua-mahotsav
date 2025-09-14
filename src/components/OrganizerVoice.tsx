@@ -24,7 +24,7 @@ const OrganizerVoice = () => {
       image: "https://storage.googleapis.com/pingua-mahotsav/secectrary.png",
     },
     {
-      name: "Shri Niranajan sahoo",
+      name: "Shri Niranjan sahoo",
       position: "Treasurer & Planning Head",
       message:
         "Every year, we witness the magic of our village coming alive during Pingua Mahotsav. It's a testament to our unity and the preservation of our beautiful traditions.",

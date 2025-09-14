@@ -33,10 +33,10 @@ const EventSchedule = () => {
     },
     {
       date: "08-10-2025",
-      day: "Wednesday",
+      day: "Wed",
       time: "7:00 PM",
       event: "Adibasi Dance",
-      description: "Traditional tribal dance by dance group from Gothataraila",
+      description: "Traditional tribal dance by dance group from Gothataila",
     },
     {
       date: "09-10-2025",
