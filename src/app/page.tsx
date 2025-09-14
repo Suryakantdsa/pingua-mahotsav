@@ -7,6 +7,7 @@ import SponsorsAndPartners from "@/components/SponsorsAndPartners";
 import DeveloperInfo from "@/components/DeveloperInfo";
 import Footer from "@/components/Footer";
 import Form from "@/components/Form";
+import GallerySection from "@/components/GallerySection";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       {/* Events & Schedule */}
 
       <EventSchedule />
+      <GallerySection />
 
       {/* Event Map */}
       <EventMap />
