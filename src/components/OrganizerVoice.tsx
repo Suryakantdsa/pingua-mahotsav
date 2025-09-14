@@ -24,44 +24,12 @@ const OrganizerVoice = () => {
       image: "https://storage.googleapis.com/pingua-mahotsav/secectrary.png",
     },
     {
-      name: "Shri Ashish Kumar Sahoo",
-      position: "Planning Head",
+      name: "Shri Niranajan sahoo",
+      position: "Treasurer & Planning Head",
       message:
         "Every year, we witness the magic of our village coming alive during Pingua Mahotsav. It's a testament to our unity and the preservation of our beautiful traditions.",
       image:
         "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
-    },
-    {
-      name: "Shri Abinash Rout",
-      position: "Cultural Coordinator",
-      message:
-        "The cultural programs during our festival showcase the diverse talents within our community and inspire the younger generation to embrace our heritage.",
-      image:
-        "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
-    },
-    {
-      name: "Shri Lingaraj Das",
-      position: "Treasurer",
-      message:
-        "Managing the resources for this festival is a blessing. Every contribution, big or small, adds to the glory of Pingua Mahotsav.",
-      image:
-        "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
-    },
-    {
-      name: "Shri Manas Pradhan",
-      position: "Event Coordinator",
-      message:
-        "From stage shows to folk dances, it’s my honor to bring joy and entertainment for everyone during the Mahotsav.",
-      image:
-        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
-    },
-    {
-      name: "Shri Ramesh Behera",
-      position: "Logistics Head",
-      message:
-        "Ensuring smooth arrangements and hospitality for guests is my small seva towards our great tradition.",
-      image:
-        "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
     },
   ];
 

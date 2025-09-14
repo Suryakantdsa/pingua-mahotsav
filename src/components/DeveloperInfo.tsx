@@ -62,43 +62,6 @@ const DeveloperInfo = () => {
         </Card>
 
         {/* Developer Profile */}
-        <div className="flex justify-center items-center ">
-          <Card className="w-full max-w-3xl h-35 sm:h-28 shadow-lg rounded-3xl border border-gray-200 hover:scale-105 hover:shadow-2xl transition-transform duration-300 bg-white/70 backdrop-blur-md overflow-hidden relative ">
-            <CardContent className="p-4 flex items-center gap-5">
-              {/* Profile Image */}
-              <div className="relative flex-shrink-0 ">
-                <Image
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop"
-                  alt="Suryakant Das"
-                  width={64}
-                  height={64}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-orange-300 shadow-md"
-                />
-                <span className="absolute bottom-1 right-1 block w-3 h-3 bg-green-500 border-2 border-white rounded-full animate-pulse"></span>
-              </div>
-
-              {/* Name, Role & Description */}
-              <div className="flex flex-col justify-center ">
-                <h4 className="text-lg font-bold text-gray-900">
-                  Suryakant Das
-                </h4>
-                <p className="text-sm text-gray-600">Software Developer</p>
-                <p className="text-xs text-gray-500 mt-1 leading-tight">
-                  Member of{" "}
-                  <span className="font-medium">Rising Star Club</span>, 2012
-                  Batch · Pingua High School
-                  <br />
-                  <span className="text-orange-600 font-semibold">
-                    Developer of Pingua Mahotsav 2025 Website
-                  </span>
-                </p>
-              </div>
-
-              {/* Optional subtle gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-50/30 to-red-50/30 pointer-events-none rounded-3xl" />
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </section>
   );

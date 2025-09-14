@@ -8,6 +8,7 @@ import DeveloperInfo from "@/components/DeveloperInfo";
 import Footer from "@/components/Footer";
 import Form from "@/components/Form";
 import GallerySection from "@/components/GallerySection";
+import WebsideCredit from "@/components/WebsideCredit";
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
 
       {/* Developer Credits */}
       <DeveloperInfo />
+      <WebsideCredit />
       {/* Footer */}
       <Footer />
       <Form />
