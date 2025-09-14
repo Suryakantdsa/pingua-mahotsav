@@ -59,13 +59,13 @@ const EventMap = () => {
         {/* Interactive Map */}
         <Card className="overflow-hidden">
           <CardContent className="p-0 relative">
-            <div className="relative w-full aspect-[16/9]">
+            <div className="relative w-full h-64 sm:h-96">
               <Image
                 src="https://storage.googleapis.com/pingua-mahotsav/map.png"
                 alt="Festival Venue Map"
-                width={100}
-                height={100}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover rounded-lg"
+                priority
               />
 
               {/* Facility Markers */}
