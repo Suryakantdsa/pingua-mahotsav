@@ -72,6 +72,7 @@ const HeroSection = () => {
              bg-gradient-to-r from-yellow-400 to-orange-500 
              hover:from-yellow-500 hover:to-orange-600 
              text-black font-semibold rounded-full 
+            animate-pulse
              shadow-lg hover:shadow-xl 
              transition-all duration-200 transform hover:scale-105"
           >
