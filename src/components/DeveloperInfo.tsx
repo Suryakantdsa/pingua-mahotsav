@@ -62,11 +62,11 @@ const DeveloperInfo = () => {
         </Card>
 
         {/* Developer Profile */}
-        <div className="flex justify-center items-center">
-          <Card className="w-full max-w-3xl h-28 shadow-lg rounded-3xl border border-gray-200 hover:scale-105 hover:shadow-2xl transition-transform duration-300 bg-white/70 backdrop-blur-md overflow-hidden relative">
+        <div className="flex justify-center items-center ">
+          <Card className="w-full max-w-3xl h-35 sm:h-28 shadow-lg rounded-3xl border border-gray-200 hover:scale-105 hover:shadow-2xl transition-transform duration-300 bg-white/70 backdrop-blur-md overflow-hidden relative ">
             <CardContent className="p-4 flex items-center gap-5">
               {/* Profile Image */}
-              <div className="relative flex-shrink-0">
+              <div className="relative flex-shrink-0 ">
                 <Image
                   src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop"
                   alt="Suryakant Das"
@@ -78,7 +78,7 @@ const DeveloperInfo = () => {
               </div>
 
               {/* Name, Role & Description */}
-              <div className="flex flex-col justify-center mb-2">
+              <div className="flex flex-col justify-center ">
                 <h4 className="text-lg font-bold text-gray-900">
                   Suryakant Das
                 </h4>
