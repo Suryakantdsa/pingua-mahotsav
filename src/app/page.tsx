@@ -59,7 +59,7 @@ export default function Home() {
       <EventMap />
       <OrganizerVoice />
       <SponsorsAndPartners />
-      <DeveloperInfo />
+      {/* <DeveloperInfo /> */}
       <WebsideCredit />
       <Footer />
       <Form />

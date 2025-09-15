@@ -13,11 +13,11 @@ const SponsorsAndPartners = () => {
       type: "Main Organizer",
       icon: <Users className="h-12 w-12 text-orange-500 mx-auto mb-4" />,
     },
-    {
-      name: "Rising Star Club, 2012 Batch, Pingua High School",
-      type: "Website Sponsor",
-      icon: <Award className="h-12 w-12 text-yellow-500 mx-auto mb-4" />,
-    },
+    // {
+    //   name: "Rising Star Club, 2012 Batch, Pingua High School",
+    //   type: "Website Sponsor",
+    //   icon: <Award className="h-12 w-12 text-yellow-500 mx-auto mb-4" />,
+    // },
 
     {
       name: "All Ganesh Puja Club Members",
@@ -57,7 +57,12 @@ const SponsorsAndPartners = () => {
         </div>
 
         {/* Sponsor Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-auto-fit gap-8 "
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+          }}
+        >
           {sponsors.map((sponsor, index) => (
             <Card
               key={index}

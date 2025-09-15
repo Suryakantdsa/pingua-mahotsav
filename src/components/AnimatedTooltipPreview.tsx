@@ -5,48 +5,39 @@ import { AnimatedTooltip } from "./ui/animated-tooltip";
 const people = [
   {
     id: 1,
-    name: "Abinash rout",
-    image: "https://storage.googleapis.com/pingua-mahotsav/avi.jpeg",
+    name: "Suryakant das",
+    designation: "Developer of the website",
+    image: "https://storage.googleapis.com/pingua-mahotsav/surya.jpeg",
   },
   {
     id: 2,
-    name: "Pratap ranjan sahoo",
-    image: "https://storage.googleapis.com/pingua-mahotsav/jinua.jpeg",
-  },
-  {
-    id: 3,
     name: "Ashish kuamr sahoo",
+    designation: "Planning & Ideas",
     image: "https://storage.googleapis.com/pingua-mahotsav/ashish.jpeg",
   },
   {
-    id: 4,
-    name: "Brajskisor sahoo",
-    image: "https://storage.googleapis.com/pingua-mahotsav/bunu.jpeg",
-  },
-  {
-    id: 5,
-    name: "Asutosh ashoo",
-    image: "https://storage.googleapis.com/pingua-mahotsav/happy.jpeg",
-  },
-  {
-    id: 6,
-    name: "Chandan behera",
+    id: 3,
+    name: "Abinash rout",
+    designation: "Content Collection",
     image: "https://storage.googleapis.com/pingua-mahotsav/avi.jpeg",
   },
   {
-    id: 7,
-    name: "Gyanaranjan mahalik",
+    id: 4,
+    name: "Pratap ranjan sahoo",
+    designation: "Content Support",
     image: "https://storage.googleapis.com/pingua-mahotsav/jinua.jpeg",
   },
   {
-    id: 8,
-    name: "Biswajit sahoo",
+    id: 5,
+    name: "Brajskisor sahoo",
+    designation: "Member",
     image: "https://storage.googleapis.com/pingua-mahotsav/bunu.jpeg",
   },
   {
-    id: 9,
-    name: "Balaram sahoo",
-    image: "https://storage.googleapis.com/pingua-mahotsav/jinua.jpeg",
+    id: 6,
+    name: "Asutosh ashoo",
+    designation: "Member",
+    image: "https://storage.googleapis.com/pingua-mahotsav/happy.jpeg",
   },
 ];
 

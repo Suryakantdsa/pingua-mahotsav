@@ -28,8 +28,14 @@ const OrganizerVoice = () => {
       position: "Treasurer & Planning Head",
       message:
         "Every year, we witness the magic of our village coming alive during Pingua Mahotsav. It's a testament to our unity and the preservation of our beautiful traditions.",
-      image:
-        "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop",
+      image: "https://storage.googleapis.com/pingua-mahotsav/silusir.png",
+    },
+    {
+      name: "Shri Debasish Barik",
+      position: "Cultural Program Head",
+      message:
+        "The cultural stage of Pingua Mahotsav is where our heritage meets creativity. From folk songs to modern performances, every act reflects the spirit of our village.",
+      image: "https://storage.googleapis.com/pingua-mahotsav/debashis.png",
     },
   ];
 
@@ -111,7 +117,7 @@ const OrganizerVoice = () => {
                     alt={organizer.name}
                     width={200}
                     height={200}
-                    className="w-24 h-24 rounded-full mb-4 object-cover border-4 border-orange-200 shadow-md"
+                    className="w-30 h-30 rounded-full mb-4 object-cover border-4 border-orange-200 shadow-md"
                   />
                   <CardTitle className="text-lg font-semibold text-orange-800">
                     {organizer.name}

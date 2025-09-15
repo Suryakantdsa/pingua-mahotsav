@@ -9,16 +9,25 @@ const GallerySection = () => {
     { type: "photo", src: "image1.jpeg" },
     { type: "video", key: "jYLxR6fRd2A" },
     // { type: "photo", src: "image2.jpeg" },
+    { type: "photo", src: "meeting1.jpeg" },
     { type: "photo", src: "image4.jpeg" },
     { type: "video", key: "AbSjnZUZA3g" },
-    { type: "photo", src: "image3.jpeg" },
+    // { type: "photo", src: "image3.jpeg" },
     { type: "photo", src: "image5.jpeg" },
+    {
+      type: "videolink",
+      src: "https://storage.googleapis.com/pingua-mahotsav/video1.mp4",
+    },
     { type: "video", key: "OxHcA7Ov2sA" },
-    { type: "photo", src: "image7.jpeg" },
+    // { type: "photo", src: "image7.jpeg" },
+    { type: "photo", src: "meeting2.jpeg" },
+    { type: "photo", src: "meeting.jpeg" },
+    // { type: "photo", src: "image7.jpeg" },
     { type: "video", key: "Ex3fE1wGBS8" },
     { type: "photo", src: "image8.jpeg" },
     { type: "video", key: "vk2euhGWzKU" },
     { type: "photo", src: "image9.jpeg" },
+    { type: "video", key: "W2YxlLvdHDI" },
   ];
 
   return (
@@ -51,6 +60,15 @@ const GallerySection = () => {
                   width={600}
                   height={400}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform"
+                />
+              ) : item.type === "videolink" ? (
+                <video
+                  className="w-full h-64 object-cover rounded-xl"
+                  src={item.src}
+                  controls
+                  autoPlay
+                  muted
+                  loop
                 />
               ) : (
                 <div className="relative w-full h-64 overflow-hidden rounded-xl">

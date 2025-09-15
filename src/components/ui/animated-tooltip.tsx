@@ -16,7 +16,7 @@ export const AnimatedTooltip = ({
   items: {
     id: number;
     name: string;
-    // designation: string;
+    designation: string;
     image: string;
   }[];
 }) => {
@@ -81,17 +81,17 @@ export const AnimatedTooltip = ({
                 <div className="relative z-30 text-base font-bold text-white">
                   {item.name}
                 </div>
-                {/* <div className="text-xs text-white">{item.designation}</div> */}
+                <div className="text-xs text-white">{item.designation}</div>
               </motion.div>
             )}
           </AnimatePresence>
           <Image
             onMouseMove={handleMouseMove}
-            height={250}
-            width={250}
+            height={150}
+            width={150}
             src={item.image}
             alt={item.name}
-            className="relative !m-0 h-16 w-16 rounded-full border-2 border-white object-cover object-top !p-0 transition duration-500 group-hover:z-30 group-hover:scale-105 "
+            className="relative !m-0 h-12 w-12 rounded-full border-2 border-white object-cover object-top !p-0 transition duration-500 group-hover:z-30 group-hover:scale-105 "
           />
         </div>
       ))}
