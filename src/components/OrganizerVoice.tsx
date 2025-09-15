@@ -31,6 +31,13 @@ const OrganizerVoice = () => {
       image: "https://storage.googleapis.com/pingua-mahotsav/silusir.png",
     },
     {
+      name: "Shri Amarendra Prasad Mohalik",
+      position: "Advisory Committee Member",
+      message:
+        "My heart always belongs to our village. The unity, culture, and traditions of Pingua are treasures that I deeply cherish and support with pride.",
+      image: "https://storage.googleapis.com/pingua-mahotsav/anil_sir.png",
+    },
+    {
       name: "Shri Debasish Barik",
       position: "Cultural Program Head",
       message:

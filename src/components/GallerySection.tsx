@@ -10,16 +10,17 @@ const GallerySection = () => {
     { type: "video", key: "jYLxR6fRd2A" },
     // { type: "photo", src: "image2.jpeg" },
     { type: "photo", src: "meeting1.jpeg" },
-    { type: "photo", src: "image4.jpeg" },
+    { type: "photo", src: "meeting3.jpeg" },
     { type: "video", key: "AbSjnZUZA3g" },
+    { type: "photo", src: "image4.jpeg" },
     // { type: "photo", src: "image3.jpeg" },
     { type: "photo", src: "image5.jpeg" },
-    {
-      type: "videolink",
-      src: "https://storage.googleapis.com/pingua-mahotsav/video1.mp4",
-    },
-    { type: "video", key: "OxHcA7Ov2sA" },
+    // {
+    //   type: "videolink",
+    //   src: "https://storage.googleapis.com/pingua-mahotsav/video1.mp4",
+    // },
     // { type: "photo", src: "image7.jpeg" },
+    { type: "video", key: "OxHcA7Ov2sA" },
     { type: "photo", src: "meeting2.jpeg" },
     { type: "photo", src: "meeting.jpeg" },
     // { type: "photo", src: "image7.jpeg" },
@@ -27,7 +28,10 @@ const GallerySection = () => {
     { type: "photo", src: "image8.jpeg" },
     { type: "video", key: "vk2euhGWzKU" },
     { type: "photo", src: "image9.jpeg" },
+    { type: "photo", src: "meeting4.jpeg" },
     { type: "video", key: "W2YxlLvdHDI" },
+    { type: "photo", src: "meeting5.jpeg" },
+    { type: "video", key: "zLbWqWqUmBQ" },
   ];
 
   return (

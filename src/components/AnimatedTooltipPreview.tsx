@@ -25,7 +25,7 @@ const people = [
     id: 4,
     name: "Pratap ranjan sahoo",
     designation: "Content Support",
-    image: "https://storage.googleapis.com/pingua-mahotsav/jinua.jpeg",
+    image: "https://storage.googleapis.com/pingua-mahotsav/jinuaa.PNG",
   },
   {
     id: 5,
@@ -35,9 +35,27 @@ const people = [
   },
   {
     id: 6,
-    name: "Asutosh ashoo",
+    name: "Asutosh sahoo",
     designation: "Member",
-    image: "https://storage.googleapis.com/pingua-mahotsav/happy.jpeg",
+    image: "https://storage.googleapis.com/pingua-mahotsav/happy1.jpeg",
+  },
+  {
+    id: 7,
+    name: "Chandan behera",
+    designation: "Member",
+    image: "https://storage.googleapis.com/pingua-mahotsav/chandan.jpeg",
+  },
+  {
+    id: 8,
+    name: "Soumay ranjan barik",
+    designation: "Member",
+    image: "https://storage.googleapis.com/pingua-mahotsav/muna.jpeg",
+  },
+  {
+    id: 9,
+    name: "Gyana ranjan mahalik",
+    designation: "Member",
+    image: "https://storage.googleapis.com/pingua-mahotsav/chiku.jpeg",
   },
 ];
 
