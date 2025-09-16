@@ -62,6 +62,10 @@ export default function Home() {
           name="keywords"
           content="Pingua Mahotsav, cultural festival, dance, music, drama, Odisha festival"
         />
+        <meta
+          name="google-site-verification"
+          content="2gIaiG3zU7Tw8Uh_VoruqV_oPpnmNc8-ijte9XsG4BM"
+        />
         <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Pingua Mahotsav 2025" />
         <meta
