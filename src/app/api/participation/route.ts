@@ -11,7 +11,10 @@ export async function POST(req: Request) {
     await participant.save();
 
     return NextResponse.json(
-      { message: "🎉 Thank you! Your registration was successful." },
+      {
+        message:
+          "🎉 Thank you! Your registration was successful. We will review your submission and contact you shortly.",
+      },
       { status: 201 }
     );
     /* eslint-disable */

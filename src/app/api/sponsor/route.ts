@@ -32,7 +32,10 @@ export async function POST(req: Request) {
     await sponsor.save();
 
     return NextResponse.json(
-      { message: "🎉 Thank you! Your sponsorship request has been submitted." },
+      {
+        message:
+          "🎉 Thank you! Your sponsorship request has been submitted. We’ll contact you soon to discuss the next steps",
+      },
       { status: 201 }
     );
   } catch (error) {

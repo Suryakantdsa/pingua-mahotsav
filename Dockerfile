@@ -12,6 +12,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN bun run build
+# Generate sitemap inside container
+RUN bun run postbuild
 
 # Production image
 FROM oven/bun:alpine AS runner

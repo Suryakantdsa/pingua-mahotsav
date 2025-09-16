@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import Form from "@/components/Form";
 import GallerySection from "@/components/GallerySection";
 import WebsideCredit from "@/components/WebsideCredit";
+import Head from "next/head";
 
 export const metadata = {
   title: "Pingua Mahotsav 2025 | Official Website",
@@ -50,18 +51,41 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
-      <Navbar />
-      <HeroSection />
-      <EventSchedule />
-      <GallerySection />
-      <EventMap />
-      <OrganizerVoice />
-      <SponsorsAndPartners />
-      {/* <DeveloperInfo /> */}
-      <WebsideCredit />
-      <Footer />
-      <Form />
-    </div>
+    <>
+      <Head>
+        <title>Pingua Mahotsav 2025 - Celebrate Culture & Tradition</title>
+        <meta
+          name="description"
+          content="Join Pingua Mahotsav 2025 to celebrate cultural heritage, music, dance, drama, and more."
+        />
+        <meta
+          name="keywords"
+          content="Pingua Mahotsav, cultural festival, dance, music, drama, Odisha festival"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Pingua Mahotsav 2025" />
+        <meta
+          property="og:description"
+          content="Join Pingua Mahotsav 2025 to celebrate cultural heritage"
+        />
+        <meta property="og:url" content="https://pinguamahotsav.org/" />
+        <meta property="og:type" content="website" />
+
+        <link rel="canonical" href="https://pinguamahotsav.org/" />
+      </Head>
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
+        <Navbar />
+        <HeroSection />
+        <EventSchedule />
+        <GallerySection />
+        <EventMap />
+        <OrganizerVoice />
+        <SponsorsAndPartners />
+        {/* <DeveloperInfo /> */}
+        <WebsideCredit />
+        <Footer />
+        <Form />
+      </div>
+    </>
   );
 }

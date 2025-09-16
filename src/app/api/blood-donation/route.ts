@@ -17,7 +17,10 @@ export async function POST(req: Request) {
     await donor.save();
 
     return NextResponse.json(
-      { message: "🎉 Thank you! You are registered as a blood donor." },
+      {
+        message:
+          "🎉 Thank you! You are now registered as a blood donor. We appreciate your support in saving lives!",
+      },
       { status: 201 }
     );
   } catch (error) {

@@ -15,19 +15,28 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Pingua Mahotsav 2025 | Official Website",
   description:
-    "Welcome to Pingua Mahotsav 2025! Explore event schedules, cultural programs, maps, organizers' voices, sponsors, and more.",
+    "Welcome to Pingua Mahotsav 2025! Join Pingua Mahotsav 2025 to celebrate cultural heritage, music, dance, drama, and more.",
   keywords: [
     "Pingua Mahotsav",
     "Pingua Festival",
     "Cultural Events",
     "Odisha Festivals",
     "Pingua 2025",
+    "Pingua",
+    "pingua dhenkanal",
+    "dhenkanal",
+    "goda",
+    "gondia",
+    "pingua laxmi puja",
+    "pingua laxmi puja 2025",
+    "laxmi puja 2025",
+    "dhenkanal laxmi puja 2025",
   ],
   openGraph: {
     title: "Pingua Mahotsav 2025",
     description:
       "Celebrate culture, tradition, and unity at Pingua Mahotsav 2025.",
-    url: "https://pinguamahotsav.com",
+    url: "https://pinguamahotsav.org",
     siteName: "Pingua Mahotsav",
     images: [
       {
