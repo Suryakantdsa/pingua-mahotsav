@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,16 +25,51 @@ const BloodDonationForm = () => {
 
   const handleClose = () => setShowBloodDonationForm(false);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+    bloodGroup: "",
+    phone: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [ack, setAck] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    setAck("");
+
+    try {
+      const res = await fetch("/api/blood-donation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = await res.json();
+      if (res.ok) {
+        setAck(result.message);
+        setFormData({ name: "", age: "", bloodGroup: "", phone: "" });
+      } else {
+        setAck(result.error || "Submission failed.");
+      }
+    } catch {
+      setAck("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     showBloodDonationForm && (
       <div
         className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-        onClick={handleClose} // click outside closes
+        onClick={handleClose}
       >
-        <div
-          className="w-full max-w-md"
-          onClick={(e) => e.stopPropagation()} // stop closing when clicking inside
-        >
+        <div className="w-full max-w-md" onClick={(e) => e.stopPropagation()}>
           <Card className="relative max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl border border-red-200">
             {/* Close button */}
             <button
@@ -55,44 +91,65 @@ const BloodDonationForm = () => {
 
             <CardContent className="space-y-4">
               <div>
-                <Label htmlFor="donor-name">Full Name</Label>
-                <Input id="donor-name" placeholder="Enter your full name" />
+                <Label htmlFor="name">Full Name</Label>
+                <Input
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your full name"
+                />
               </div>
               <div>
-                <Label htmlFor="donor-age">Age</Label>
+                <Label htmlFor="age">Age</Label>
                 <Input
-                  id="donor-age"
+                  id="age"
                   type="number"
+                  value={formData.age}
+                  onChange={handleChange}
                   placeholder="Enter your age"
                 />
               </div>
               <div>
-                <Label htmlFor="blood-group">Blood Group</Label>
-                <Select>
+                <Label>Blood Group</Label>
+                <Select
+                  value={formData.bloodGroup}
+                  onValueChange={(val) =>
+                    setFormData({ ...formData, bloodGroup: val })
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select blood group" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="a+">A+</SelectItem>
-                    <SelectItem value="a-">A-</SelectItem>
-                    <SelectItem value="b+">B+</SelectItem>
-                    <SelectItem value="b-">B-</SelectItem>
-                    <SelectItem value="ab+">AB+</SelectItem>
-                    <SelectItem value="ab-">AB-</SelectItem>
-                    <SelectItem value="o+">O+</SelectItem>
-                    <SelectItem value="o-">O-</SelectItem>
+                    {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map(
+                      (bg) => (
+                        <SelectItem key={bg} value={bg}>
+                          {bg}
+                        </SelectItem>
+                      )
+                    )}
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <Label htmlFor="donor-phone">Phone Number</Label>
-                <Input id="donor-phone" placeholder="Enter your phone number" />
+                <Label htmlFor="phone">Phone Number</Label>
+                <Input
+                  id="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Enter your phone number"
+                />
               </div>
 
-              {/* Action buttons */}
+              {ack && <p className="text-center text-green-600">{ack}</p>}
+
               <div className="flex space-x-2 pt-4">
-                <Button className="flex-1 bg-red-600 hover:bg-red-700">
-                  Register to Donate
+                <Button
+                  className="flex-1 bg-red-600 hover:bg-red-700"
+                  onClick={handleSubmit}
+                  disabled={loading}
+                >
+                  {loading ? "Submitting..." : "Register to Donate"}
                 </Button>
                 <Button
                   variant="outline"
