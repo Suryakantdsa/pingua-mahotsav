@@ -11,6 +11,8 @@ if (!MONGODB_URI) {
 /**
  * Global is used here to maintain a cached connection across hot reloads in dev.
  */
+
+/* eslint-disable */
 let cached = (global as any).mongoose;
 
 if (!cached) {

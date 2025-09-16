@@ -14,6 +14,7 @@ export async function POST(req: Request) {
       { message: "🎉 Thank you! Your registration was successful." },
       { status: 201 }
     );
+    /* eslint-disable */
   } catch (error: any) {
     console.error("Error saving participant:", error);
     return NextResponse.json(

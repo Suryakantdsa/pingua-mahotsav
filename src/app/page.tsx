@@ -6,7 +6,6 @@ import EventSchedule from "@/components/EventSchedule";
 import EventMap from "@/components/EventMap";
 import OrganizerVoice from "@/components/OrganizerVoice";
 import SponsorsAndPartners from "@/components/SponsorsAndPartners";
-import DeveloperInfo from "@/components/DeveloperInfo";
 import Footer from "@/components/Footer";
 import Form from "@/components/Form";
 import GallerySection from "@/components/GallerySection";
