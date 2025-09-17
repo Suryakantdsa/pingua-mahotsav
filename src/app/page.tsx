@@ -16,6 +16,11 @@ export const metadata = {
   title: "Pingua Mahotsav 2025 | Official Website",
   description:
     "Welcome to Pingua Mahotsav 2025! Join Pingua Mahotsav 2025 to celebrate cultural heritage, music, dance, drama, and more.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   keywords: [
     "Pingua Mahotsav",
     "Pingua Festival",
