@@ -15,7 +15,7 @@ import Head from "next/head";
 export const metadata = {
   title: "Pingua Mahotsav 2025 | Official Website",
   description:
-    "Welcome to Pingua Mahotsav 2025! Explore event schedules, cultural programs, maps, organizers' voices, sponsors, and more.",
+    "Welcome to Pingua Mahotsav 2025! Join Pingua Mahotsav 2025 to celebrate cultural heritage, music, dance, drama, and more.",
   keywords: [
     "Pingua Mahotsav",
     "Pingua Festival",
