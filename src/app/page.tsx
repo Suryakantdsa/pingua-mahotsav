@@ -11,35 +11,56 @@ import Form from "@/components/Form";
 import GallerySection from "@/components/GallerySection";
 import WebsideCredit from "@/components/WebsideCredit";
 import Head from "next/head";
+import { Metadata } from "next";
 
-export const metadata = {
-  title: "Pingua Mahotsav 2025 | Official Website",
+export const metadata: Metadata = {
+  title: "Pingua Mahotsav 2025 | Odisha's Famous Village Festival",
   description:
-    "Welcome to Pingua Mahotsav 2025! Join Pingua Mahotsav 2025 to celebrate cultural heritage, music, dance, drama, and more.",
+    "Experience Pingua Mahotsav 2025 - Odisha's biggest cultural festival with music, dance, drama, traditions, food, and devotion. Celebrate heritage at Pingua, Dhenkanal.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   keywords: [
+    "Pingua Mahotsav 2025",
+    "Pingua Festival 2025",
+    "Pingua Dhenkanal Festival",
+    "Laxmi Puja Pingua 2025",
+    "Dhenkanal Laxmi Puja 2025",
+    "Odisha Cultural Festival",
+    "Odisha Laxmi Puja",
+    "Pingua Odisha Events",
+    "Pingua Culture",
+    "Pingua Temple Festival",
     "Pingua Mahotsav",
     "Pingua Festival",
     "Cultural Events",
     "Odisha Festivals",
     "Pingua 2025",
+    "Pingua",
+    "pingua dhenkanal",
+    "dhenkanal",
+    "goda",
+    "gondia",
+    "pingua laxmi puja",
+    "pingua laxmi puja 2025",
+    "laxmi puja 2025",
+    "dhenkanal laxmi puja 2025",
   ],
+
   openGraph: {
-    title: "Pingua Mahotsav 2025",
+    title: "Pingua Mahotsav 2025 | Odisha's Famous Village Festival",
     description:
-      "Celebrate culture, tradition, and unity at Pingua Mahotsav 2025.",
-    url: "https://pinguamahotsav.com",
+      "Join Pingua Mahotsav 2025 in Dhenkanal, Odisha - A grand celebration of tradition, culture, devotion, and unity.",
+    url: "https://pinguamahotsav.org",
     siteName: "Pingua Mahotsav",
     images: [
       {
         url: "https://storage.googleapis.com/pingua-mahotsav/mahotsav.PNG",
         width: 1200,
         height: 630,
-        alt: "Pingua Mahotsav 2025",
+        alt: "Pingua Mahotsav 2025 Celebration",
       },
     ],
     locale: "en_IN",
@@ -47,9 +68,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pingua Mahotsav 2025",
+    title: "Pingua Mahotsav 2025 | Odisha's Famous Village Festival",
     description:
-      "Celebrate culture, tradition, and unity at Pingua Mahotsav 2025.",
+      "Celebrate tradition, devotion, and cultural heritage at Pingua Mahotsav 2025 in Odisha.",
     images: ["https://storage.googleapis.com/pingua-mahotsav/mahotsav.PNG"],
   },
 };
