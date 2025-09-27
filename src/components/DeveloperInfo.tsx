@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, CardContent } from "./ui/card";
 import { Star } from "lucide-react";
-import Image from "next/image";
 import { AnimatedTooltipPreview } from "./AnimatedTooltipPreview";
 
 const DeveloperInfo = () => {
