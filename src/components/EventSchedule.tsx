@@ -30,10 +30,10 @@ const EventSchedule = () => {
         "Serve humanity through the gift of life - A noble initiative for community welfare",
       type: "social",
       duration: "5 hours",
-      location: "Community Health Center",
+      location: " Prathamika Swathya Kendra",
       hasForm: true,
       targetDonors: 100,
-      organizer: "Red Cross Society",
+      organizer: "Pingua Mahotsav Paribar",
     },
     {
       date: "07-10-2025",

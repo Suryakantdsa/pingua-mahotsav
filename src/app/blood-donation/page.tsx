@@ -247,10 +247,10 @@ const BloodDonationPage = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-sm sm:text-base">
-                      December 15, 2024
+                      October 07, 2025
                     </p>
                     <p className="text-red-100 text-xs sm:text-sm">
-                      9:00 AM - 5:00 PM
+                      9:00 AM - 2:00 PM
                     </p>
                   </div>
                 </div>
