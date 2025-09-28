@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFormStore } from "@/store/useFormStore";
 const EventSchedule = () => {
-  const [activeDay, setActiveDay] = useState<string>("06-10-2025");
+  const [activeDay, setActiveDay] = useState<string>("07-10-2025");
   // const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
   const { setShowBloodDonationForm, setShowParticipationForm } = useFormStore();
 

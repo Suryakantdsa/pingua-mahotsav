@@ -98,7 +98,7 @@ const HeroSection = () => {
             ପିଙ୍ଗୁଆ ମହୋତ୍ସବ
           </h2>
           <p className="text-xl md:text-2xl mb-4 text-orange-100">
-            &quot;ରକ୍ତଦାନ ଶିବିର&quot;
+            &quot;ପରମ୍ପରା ଓ ସଂସ୍କୃତିର ମହାମିଳନ - Where Heritage Comes Aliv&quot;
           </p>
 
           {/* Stats Bar */}
@@ -127,17 +127,13 @@ const HeroSection = () => {
           >
             <Music className="h-5 w-5" />
             <span className="text-base sm:text-lg">
-              {isLastWeek
-                ? "🚀 REGISTER NOW - Last Chance!"
-                : "ସାଂସ୍କୃତିକ କାର୍ଯ୍ୟକ୍ରମରେ ଯୋଗଦାନ କରନ୍ତୁ"}
+              {"ସାଂସ୍କୃତିକ କାର୍ଯ୍ୟକ୍ରମରେ ଯୋଗଦାନ କରନ୍ତୁ"}
             </span>
             <ArrowRight className="h-6 w-6" />
           </Button>
 
           <p className="text-sm text-orange-200 mt-4 animate-pulse">
-            {isLastWeek
-              ? "📍 Limited spots remaining! Secure your participation today!"
-              : "Join Our Cultural Programs - Share Your Talent!"}
+            {"Join Our Cultural Programs - Share Your Talent!"}
           </p>
         </div>
 
