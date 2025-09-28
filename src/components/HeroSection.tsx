@@ -98,7 +98,7 @@ const HeroSection = () => {
             ପିଙ୍ଗୁଆ ମହୋତ୍ସବ
           </h2>
           <p className="text-xl md:text-2xl mb-4 text-orange-100">
-            &quot;ପରମ୍ପରା ଓ ସଂସ୍କୃତିର ମହାମିଳନ - Where Heritage Comes Alive&quot;
+            &quot;ରକ୍ତଦାନ ଶିବିର&quot;
           </p>
 
           {/* Stats Bar */}
