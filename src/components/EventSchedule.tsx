@@ -257,7 +257,10 @@ const EventSchedule = () => {
   };
 
   return (
-    <div className="event-schedule bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl p-6 max-w-6xl mx-auto">
+    <div
+      id="events"
+      className="event-schedule bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl p-6 max-w-6xl mx-auto"
+    >
       {/* Header */}
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-2">

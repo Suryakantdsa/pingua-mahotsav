@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useFormStore } from "@/store/useFormStore";
-import { Heart, X } from "lucide-react";
+import { Heart, X, Share2 } from "lucide-react";
 
 const BloodDonationForm = () => {
   const { showBloodDonationForm, setShowBloodDonationForm } = useFormStore();
@@ -63,6 +63,12 @@ const BloodDonationForm = () => {
     }
   };
 
+  const shareLink = () => {
+    const url = `${window.location.origin}/blood-donation`;
+    navigator.clipboard.writeText(url);
+    setAck("Link copied to clipboard! Share it with others.");
+  };
+
   return (
     showBloodDonationForm && (
       <div
@@ -71,7 +77,6 @@ const BloodDonationForm = () => {
       >
         <div className="w-full max-w-md" onClick={(e) => e.stopPropagation()}>
           <Card className="relative max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl border border-red-200">
-            {/* Close button */}
             <button
               onClick={handleClose}
               className="absolute top-3 right-3 p-2 rounded-full hover:bg-gray-100 transition"
@@ -141,7 +146,15 @@ const BloodDonationForm = () => {
                 />
               </div>
 
-              {ack && <p className="text-center text-green-600">{ack}</p>}
+              {ack && (
+                <p
+                  className={`text-center ${
+                    ack.includes("copied") ? "text-blue-600" : "text-green-600"
+                  }`}
+                >
+                  {ack}
+                </p>
+              )}
 
               <div className="flex space-x-2 pt-4">
                 <Button
@@ -154,11 +167,20 @@ const BloodDonationForm = () => {
                 <Button
                   variant="outline"
                   className="flex-1"
-                  onClick={handleClose}
+                  onClick={shareLink}
                 >
-                  Cancel
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Share Link
                 </Button>
               </div>
+
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={handleClose}
+              >
+                Cancel
+              </Button>
             </CardContent>
           </Card>
         </div>
