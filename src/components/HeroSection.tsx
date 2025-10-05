@@ -1,30 +1,29 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
-import { Music, ArrowRight, Users, Calendar, MapPin } from "lucide-react";
+import { Music, Users, Calendar, MapPin } from "lucide-react";
 import heroBackground from "@/assets/hero-bg.jpg";
 import { Card } from "./ui/card";
 import { useFormStore } from "@/store/useFormStore";
 
 const HeroSection = () => {
-  const [_, setIsLive] = useState(false);
+  // const [isLive, setIsLive] = useState(false);
   const [participants, setParticipants] = useState(54);
-  const { setShowParticipationForm } = useFormStore();
+  // const { setShowParticipationForm } = useFormStore();
 
-  function setShowParticipation() {
-    setShowParticipationForm(true);
-  }
+  // function setShowParticipation() {
+  //   setShowParticipationForm(true);
+  // }
 
   useEffect(() => {
     // Check if current date is October 6, 2025
-    const today = new Date();
-    const eventStart = new Date("2025-10-06T00:00:00");
-    const eventEnd = new Date("2025-10-12T23:59:59");
+    // const today = new Date();
+    // const eventStart = new Date("2025-10-06T00:00:00");
+    // const eventEnd = new Date("2025-10-12T23:59:59");
 
-    if (today >= eventStart && today <= eventEnd) {
-      setIsLive(true);
-    }
+    // if (today >= eventStart && today <= eventEnd) {
+    //   setIsLive(true);
+    // }
 
     // Simulate participant growth
     const participantTimer = setInterval(() => {
@@ -157,7 +156,7 @@ const HeroSection = () => {
         {[...Array(12)].map((_, i) => {
           const left = Math.random() * 100;
           const top = Math.random() * 100;
-          const size = Math.random() * 2 + 1;
+          // const size = Math.random() * 2 + 1;
           const delay = Math.random() * 3;
           const duration = Math.random() * 2 + 2;
 

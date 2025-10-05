@@ -11,11 +11,7 @@ const isEventPassed = (eventDate: string) => {
 
   // Set "today" to 09-10-2025 for testing
   const today = new Date(); // October 9, 2025 (month is 0-indexed: 9 = Oct)
-  today.setHours(0, 0, 0, 0);
-
-  console.log("Event:", eventDate, "→", eventDay.toISOString());
-  console.log("Today:", today.toISOString());
-  console.log("Passed:", eventDay < today); // Should be true
+  today.setHours(0, 0, 0, 0); // Should be true
 
   return eventDay < today;
 };
