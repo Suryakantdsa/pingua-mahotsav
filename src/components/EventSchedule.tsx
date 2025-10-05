@@ -2,6 +2,27 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFormStore } from "@/store/useFormStore";
+
+const isEventPassed = (eventDate: string) => {
+  // Parse eventDate: DD-MM-YYYY
+  const [day, month, year] = eventDate.split("-").map(Number);
+  const eventDay = new Date(year, month - 1, day); // month is 0-indexed
+  eventDay.setHours(0, 0, 0, 0);
+
+  // Set "today" to 09-10-2025 for testing
+  const today = new Date(); // October 9, 2025 (month is 0-indexed: 9 = Oct)
+  today.setHours(0, 0, 0, 0);
+
+  console.log("Event:", eventDate, "→", eventDay.toISOString());
+  console.log("Today:", today.toISOString());
+  console.log("Passed:", eventDay < today); // Should be true
+
+  return eventDay < today;
+};
+
+// Test it
+// console.log(isEventPassed("08-10-2025")); // ✅ true (Oct 8 < Oct 9)
+
 const EventSchedule = () => {
   const [activeDay, setActiveDay] = useState<string>("07-10-2025");
   // const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
@@ -360,11 +381,16 @@ const EventSchedule = () => {
               <AnimatePresence>
                 {/* {expandedEvent === index && ( */}
                 <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
+                  key={`${event.date}-${index}`}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
+                  className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 transition-all duration-300 ${
+                    isEventPassed(event.date)
+                      ? "opacity-60 cursor-not-allowed"
+                      : "hover:shadow-xl"
+                  }`}
                 >
                   <div className="p-5 space-y-4">
                     {/* Description */}
@@ -391,22 +417,53 @@ const EventSchedule = () => {
                       <div className="flex gap-3">
                         {event.hasForm && (
                           <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => setShowBloodDonationForm(true)}
-                            className="flex-1 bg-red-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-600 transition-colors"
+                            whileHover={
+                              isEventPassed(event.date) ? {} : { scale: 1.05 }
+                            }
+                            whileTap={
+                              isEventPassed(event.date) ? {} : { scale: 0.95 }
+                            }
+                            onClick={() =>
+                              !isEventPassed(event.date) &&
+                              setShowBloodDonationForm(true)
+                            }
+                            disabled={isEventPassed(event.date)}
+                            className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
+                              isEventPassed(event.date)
+                                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                : "bg-red-500 text-white hover:bg-red-600"
+                            }`}
                           >
-                            🩸 Register for Blood Donation
+                            🩸{" "}
+                            {isEventPassed(event.date)
+                              ? "Registration Closed"
+                              : "Register for Blood Donation"}
                           </motion.button>
                         )}
+
                         {event.participationOpen && (
                           <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => setShowParticipationForm(true)}
-                            className="flex-1 bg-green-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-600 transition-colors"
+                            whileHover={
+                              isEventPassed(event.date) ? {} : { scale: 1.05 }
+                            }
+                            whileTap={
+                              isEventPassed(event.date) ? {} : { scale: 0.95 }
+                            }
+                            onClick={() =>
+                              !isEventPassed(event.date) &&
+                              setShowParticipationForm(true)
+                            }
+                            disabled={isEventPassed(event.date)}
+                            className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
+                              isEventPassed(event.date)
+                                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                : "bg-green-500 text-white hover:bg-green-600"
+                            }`}
                           >
-                            🎭 Participate in Program
+                            🎭{" "}
+                            {isEventPassed(event.date)
+                              ? "Participation Closed"
+                              : "Participate in Program"}
                           </motion.button>
                         )}
                       </div>

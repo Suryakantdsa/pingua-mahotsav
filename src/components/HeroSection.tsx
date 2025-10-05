@@ -8,7 +8,7 @@ import { Card } from "./ui/card";
 import { useFormStore } from "@/store/useFormStore";
 
 const HeroSection = () => {
-  const [isLive, setIsLive] = useState(false);
+  const [_, setIsLive] = useState(false);
   const [participants, setParticipants] = useState(54);
   const { setShowParticipationForm } = useFormStore();
 
@@ -97,7 +97,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <Button
+          {/* <Button
             onClick={() => setShowParticipation()}
             className={`inline-flex items-center justify-center gap-2 px-6 py-3 
               bg-gradient-to-r from-yellow-400 to-orange-500 
@@ -111,11 +111,11 @@ const HeroSection = () => {
               ସାଂସ୍କୃତିକ କାର୍ଯ୍ୟକ୍ରମରେ ଯୋଗଦାନ କରନ୍ତୁ
             </span>
             <ArrowRight className="h-6 w-6" />
-          </Button>
+          </Button> */}
 
-          <p className="text-sm text-orange-200 mt-4 animate-pulse">
+          {/* <p className="text-sm text-orange-200 mt-4 animate-pulse">
             Join Our Cultural Programs - Share Your Talent!
-          </p>
+          </p> */}
         </div>
 
         {/* Live Status */}
@@ -152,8 +152,7 @@ const HeroSection = () => {
           🎯 ୬-୧୨ ଅକ୍ଟୋବର ୨୦୨୫ | ଲକ୍ଷ୍ମୀ ପୂଜା ବିଶେଷ | Join Us Today!
         </Badge>
       </div>
-      {/* Celebration Fireworks/Crackers */}
-      {/* Celebration Fireworks/Crackers */}
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         {[...Array(12)].map((_, i) => {
           const left = Math.random() * 100;

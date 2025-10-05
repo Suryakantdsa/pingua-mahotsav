@@ -1,5 +1,6 @@
 import { Types } from "mongoose";
 
+// eslint-disable-next-line no-explicit-any
 // Types
 export enum BloodGroup {
   A_POS = "A+",
