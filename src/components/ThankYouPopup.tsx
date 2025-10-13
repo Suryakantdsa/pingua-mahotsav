@@ -4,7 +4,7 @@ import { X, Sparkles, Camera, Calendar } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ThankYouPopup = () => {
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const hasVisited = localStorage.getItem("pingua_mahotsav_visited");
