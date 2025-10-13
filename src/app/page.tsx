@@ -12,6 +12,7 @@ import GallerySection from "@/components/GallerySection";
 import WebsideCredit from "@/components/WebsideCredit";
 import Head from "next/head";
 import { Metadata } from "next";
+import ThankYouPopup from "@/components/ThankYouPopup";
 
 export const metadata: Metadata = {
   title: "Pingua Mahotsav 2025 | Odisha's Famous Village Festival",
@@ -115,6 +116,7 @@ export default function Home() {
         <WebsideCredit />
         <Footer />
         <Form />
+        <ThankYouPopup />
       </div>
     </>
   );
