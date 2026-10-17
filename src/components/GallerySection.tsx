@@ -1,253 +1,325 @@
 "use client";
-import React, { useState } from "react";
-import { Card } from "./ui/card";
-import { Play, ZoomIn, Loader2 } from "lucide-react";
+
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import {
+  Play,
+  ZoomIn,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Film,
+  Camera,
+} from "lucide-react";
 
 interface MediaItem {
-  type: "photo" | "video" | "videolink";
+  id: string;
+  type: "photo" | "video";
   src?: string;
-  key?: string;
-  alt?: string;
+  youtubeId?: string;
+  title: string;
+  category: "all" | "posters" | "cultural" | "video";
+  span?: "normal" | "featured" | "wide";
 }
 
-const GallerySection = () => {
-  const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
-  const [loadingStates, setLoadingStates] = useState<{
-    [key: number]: boolean;
-  }>({});
+const GALLERY_ITEMS: MediaItem[] = [
+  {
+    id: "g-video-1",
+    type: "video",
+    youtubeId: "jYLxR6fRd2A",
+    title: "Gajalaxmi Puja Devotional Highlights & Procession",
+    category: "video",
+    span: "featured",
+  },
+  {
+    id: "g-photo-1",
+    type: "photo",
+    src: "/images/gallery/gajalaxmi-puja.jpg",
+    title: "Maa Gajalaxmi Puja Sacred Sanctum & Procession",
+    category: "cultural",
+    span: "normal",
+  },
+  {
+    id: "g-video-2",
+    type: "video",
+    youtubeId: "AbSjnZUZA3g",
+    title: "Traditional Odia Folk Dance Troupe Performance",
+    category: "video",
+    span: "normal",
+  },
+  {
+    id: "g-photo-2",
+    type: "photo",
+    src: "/images/gallery/odissi-dance.jpg",
+    title: "Classical Odissi Cultural Recital on Main Stage",
+    category: "cultural",
+    span: "wide",
+  },
+  {
+    id: "g-video-3",
+    type: "video",
+    youtubeId: "OxHcA7Ov2sA",
+    title: "Melody Band & Musical Night Live Performance",
+    category: "video",
+    span: "normal",
+  },
+  {
+    id: "g-photo-3",
+    type: "photo",
+    src: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?q=80&w=800&auto=format&fit=crop",
+    title: "Annual Blood & Organ Donation Camp at Festival Office",
+    category: "cultural",
+    span: "normal",
+  },
+  {
+    id: "g-photo-4",
+    type: "photo",
+    src: "/images/gallery/melody-night.jpg",
+    title: "Star Melody Night Concert & Live Sound Experience",
+    category: "cultural",
+    span: "wide",
+  },
+  {
+    id: "g-video-5",
+    type: "video",
+    youtubeId: "vk2euhGWzKU",
+    title: "Pingua Mahotsav Audience Celebrations & Fireworks",
+    category: "video",
+    span: "normal",
+  },
+  {
+    id: "g-photo-6",
+    type: "photo",
+    src: "https://img.youtube.com/vi/vk2euhGWzKU/maxresdefault.jpg",
+    title: "Grand Evening Illumination & Village Gathering",
+    category: "cultural",
+    span: "normal",
+  },
+  {
+    id: "g-video-6",
+    type: "video",
+    youtubeId: "zLbWqWqUmBQ",
+    title: "Grand Concluding Festival Immersion Ceremony",
+    category: "video",
+    span: "featured",
+  },
+];
 
-  const mediaItems: MediaItem[] = [
-    {
-      type: "photo",
-      src: "image1.jpeg",
-      alt: "Cultural performance at Pingua Mahotsav",
-    },
-    { type: "video", key: "jYLxR6fRd2A", alt: "Highlights from previous year" },
-    {
-      type: "photo",
-      src: "meeting1.jpeg",
-      alt: "Team meeting and planning session",
-    },
-    { type: "photo", src: "meeting3.jpeg", alt: "Event coordination team" },
-    { type: "video", key: "AbSjnZUZA3g", alt: "Cultural dance performance" },
-    { type: "photo", src: "image4.jpeg", alt: "Audience enjoying the event" },
-    { type: "photo", src: "image5.jpeg", alt: "Stage decoration and setup" },
-    {
-      type: "video",
-      key: "OxHcA7Ov2sA",
-      alt: "Musical performance highlights",
-    },
-    {
-      type: "photo",
-      src: "meeting2.jpeg",
-      alt: "Organizational team discussion",
-    },
-    { type: "photo", src: "meeting.jpeg", alt: "Volunteers coordination" },
-    { type: "video", key: "Ex3fE1wGBS8", alt: "Traditional dance showcase" },
-    { type: "photo", src: "image8.jpeg", alt: "Colorful event decorations" },
-    {
-      type: "video",
-      key: "vk2euhGWzKU",
-      alt: "Audience participation moments",
-    },
-    { type: "photo", src: "image9.jpeg", alt: "Stage performance action shot" },
-    {
-      type: "photo",
-      src: "meeting4.jpeg",
-      alt: "Planning and strategy session",
-    },
-    { type: "video", key: "W2YxlLvdHDI", alt: "Cultural event highlights" },
-    { type: "photo", src: "meeting5.jpeg", alt: "Team celebration moment" },
-    { type: "video", key: "zLbWqWqUmBQ", alt: "Finale performance" },
-  ];
+export default function GallerySection() {
+  const [activeTab, setActiveTab] = useState<"all" | "cultural" | "video">("all");
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const handleImageLoad = (index: number) => {
-    setLoadingStates((prev) => ({ ...prev, [index]: false }));
-  };
+  const filteredItems = GALLERY_ITEMS.filter((item) =>
+    activeTab === "all" ? true : item.category === activeTab
+  );
 
-  const handleImageError = (index: number) => {
-    setLoadingStates((prev) => ({ ...prev, [index]: false }));
-    console.error(`Failed to load image: ${mediaItems[index].src}`);
-  };
+  const closeLightbox = () => setLightboxIndex(null);
 
-  const openModal = (item: MediaItem, _: number) => {
-    setSelectedMedia(item);
-  };
-
-  const closeModal = () => {
-    setSelectedMedia(null);
-  };
-
-  const handleKeyPress = (
-    event: React.KeyboardEvent,
-    item: MediaItem,
-    index: number
-  ) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openModal(item, index);
+  const nextLightbox = useCallback(() => {
+    if (lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex + 1) % filteredItems.length);
     }
-  };
+  }, [lightboxIndex, filteredItems.length]);
+
+  const prevLightbox = useCallback(() => {
+    if (lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex - 1 + filteredItems.length) % filteredItems.length);
+    }
+  }, [lightboxIndex, filteredItems.length]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (lightboxIndex === null) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") nextLightbox();
+      if (e.key === "ArrowLeft") prevLightbox();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxIndex, nextLightbox, prevLightbox]);
+
+  const activeMedia = lightboxIndex !== null ? filteredItems[lightboxIndex] : null;
 
   return (
-    <section
-      className="py-20 bg-gradient-to-br from-orange-50 to-red-50 relative"
-      id="gallery"
-    >
-      <div className="absolute inset-0 bg-gradient-to-t from-orange-100/30 to-transparent pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Gallery from Previous Years
+    <section id="gallery" className="py-28 bg-[#030202] relative text-[#fff7e9] border-t border-white/[0.08]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#dc8513]/30 bg-black/40 text-[#dfd6c4] text-[11px] tracking-[0.25em] uppercase font-medium mb-3">
+            <Camera size={13} className="text-[#dc8513]" />
+            <span>Festival Gallery & Highlights</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black font-odia text-[#fff7e9] tracking-tight leading-tight">
+            ମହୋତ୍ସବ ଝଲକ
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Relive the vibrant moments from our previous celebrations through
-            photos and videos that capture the essence of Pingua Mahotsav.
+          <p className="font-cinzel text-lg sm:text-xl text-[#dc8513] font-semibold tracking-wider uppercase mt-1">
+            Visual Highlights & Live Recordings
+          </p>
+          <p className="mt-3 text-xs sm:text-sm text-[#aea493] font-serif font-light leading-relaxed">
+            Witness the divine Gajalaxmi Puja, energetic folk dances, star melody concerts, and celebrations that define Pingua Mahotsav.
           </p>
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {mediaItems.map((item, index) => (
-            <Card
-              key={index}
-              className="relative p-0 overflow-hidden rounded-xl shadow-lg hover:shadow-2xl group transition-all duration-300 cursor-pointer transform hover:-translate-y-2 bg-white"
-              onClick={() => openModal(item, index)}
-              onKeyDown={(e) => handleKeyPress(e, item, index)}
-              tabIndex={0}
-              role="button"
-              aria-label={`View ${item.type === "photo" ? "image" : "video"} ${
-                item.alt
-              }`}
+        {/* Category Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
+          {[
+            { id: "all", label: "All Highlights (ସମସ୍ତ ଝଲକ)" },
+            { id: "cultural", label: "Festival Moments (ଫଟୋଚିତ୍ର)" },
+            { id: "video", label: "Live Videos (ଭିଡିଓ)" },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setActiveTab(tab.id as any)}
+              className={`px-5 py-2 rounded-full text-xs tracking-wider uppercase transition-all cursor-pointer ${activeTab === tab.id
+                  ? "bg-[#dc8513] text-[#030202] font-bold shadow-lg shadow-[#dc8513]/20"
+                  : "bg-white/[0.03] text-[#dfd6c4]/80 hover:text-white hover:bg-white/[0.06] border border-white/10"
+                }`}
             >
-              {/* Loading State */}
-              {item.type === "photo" && !loadingStates[index] && (
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <Loader2 className="h-8 w-8 text-orange-500 animate-spin" />
-                </div>
-              )}
-
-              {/* Media Content */}
-              {item.type === "photo" ? (
-                <div className="relative w-full h-64 overflow-hidden">
-                  <Image
-                    src={`https://storage.googleapis.com/pingua-mahotsav/${item.src}`}
-                    alt={item.alt || `Gallery image ${index + 1}`}
-                    width={400}
-                    height={256}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                    onLoad={() => handleImageLoad(index)}
-                    onError={() => handleImageError(index)}
-                    loading={index < 4 ? "eager" : "lazy"}
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                  <ZoomIn className="absolute top-3 right-3 h-6 w-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
-                </div>
-              ) : item.type === "videolink" ? (
-                <div className="relative w-full h-64 overflow-hidden rounded-xl">
-                  <video
-                    className="w-full h-64 object-cover rounded-xl"
-                    src={item.src}
-                    controls
-                    autoPlay
-                    muted
-                    loop
-                    aria-label={item.alt}
-                  />
-                </div>
-              ) : (
-                <div className="relative w-full h-64 overflow-hidden rounded-xl">
-                  <iframe
-                    className="w-full h-full"
-                    src={`https://www.youtube.com/embed/${item.key}?autoplay=0&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0`}
-                    title={`YouTube video: ${item.alt}`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="bg-black/40 rounded-full p-4 transform group-hover:scale-110 transition-transform duration-300">
-                      <Play className="h-8 w-8 text-white fill-current" />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Overlay with description */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white text-sm font-medium truncate">
-                  {item.alt}
-                </p>
-                <span className="text-orange-300 text-xs capitalize">
-                  {item.type}
-                </span>
-              </div>
-
-              {/* Glow effect */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-200/20 to-red-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-            </Card>
+              {tab.label}
+            </button>
           ))}
         </div>
 
-        {/* Load More Button */}
-        {/* <div className="text-center mt-12">
-          <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-full font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg">
-            Load More Memories
-          </button>
-        </div> */}
+        {/* Editorial Masonry Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredItems.map((item, index) => {
+            const isVideo = item.type === "video";
+            const thumbnailSrc = isVideo
+              ? `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`
+              : item.src || "/hero-bg.jpg";
+
+            return (
+              <div
+                key={item.id}
+                onClick={() => setLightboxIndex(index)}
+                className={`group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#09070c] cursor-pointer shadow-xl hover:border-[#dc8513]/50 transition-all duration-300 ${item.span === "featured"
+                    ? "sm:col-span-2 sm:row-span-2 aspect-[4/3] sm:aspect-auto sm:min-h-[480px]"
+                    : item.span === "wide"
+                      ? "sm:col-span-2 aspect-[16/9]"
+                      : "aspect-[4/3]"
+                  }`}
+              >
+                <Image
+                  src={thumbnailSrc}
+                  alt={item.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+
+                {/* Gradient Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+
+                {/* Type Indicator Tag */}
+                <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-bold text-[#cca146]">
+                  {isVideo ? <Film size={13} className="text-[#dc8513]" /> : <Camera size={13} />}
+                  <span>{isVideo ? "Video Highlight" : "Official Media"}</span>
+                </div>
+
+                {/* Central Play Badge for Videos (Isha Saffron Badge) */}
+                {isVideo && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-full bg-[#dc8513] text-[#030202] flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-[#ffa735] transition-transform">
+                      <Play size={22} className="fill-[#030202] ml-1" />
+                    </div>
+                  </div>
+                )}
+
+                {/* Bottom Caption */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10 flex items-end justify-between gap-3">
+                  <div>
+                    <h3 className="text-sm sm:text-base font-bold text-[#fff7e9] group-hover:text-[#dc8513] transition-colors drop-shadow">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-[#dc8513] group-hover:text-[#030202] flex items-center justify-center shrink-0 transition-colors">
+                    <ZoomIn size={16} />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Modal for enlarged view */}
-      {selectedMedia && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl max-h-full w-full">
-            <button
-              onClick={closeModal}
-              className="absolute -top-12 right-0 text-white text-2xl z-10 hover:text-orange-400 transition-colors"
-              aria-label="Close modal"
-            >
-              ✕
-            </button>
+      {/* Lightbox / Video Player Modal */}
+      {lightboxIndex !== null && activeMedia && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
+          onClick={closeLightbox}
+        >
+          <div
+            className="relative w-full max-w-5xl rounded-3xl overflow-hidden border border-white/15 bg-[#09070c] shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header with Title and Close Button */}
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10 bg-black/50">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#dc8513]" />
+                <h3 className="text-sm sm:text-base font-bold text-[#fff7e9]">
+                  {activeMedia.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={closeLightbox}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-[#fff7e9] transition-colors"
+                aria-label="Close modal"
+              >
+                <X size={18} />
+              </button>
+            </div>
 
-            <div className="bg-white rounded-xl overflow-hidden">
-              {selectedMedia.type === "photo" ? (
-                <Image
-                  src={`https://storage.googleapis.com/pingua-mahotsav/${selectedMedia.src}`}
-                  alt={selectedMedia.alt || "Enlarged gallery view"}
-                  width={800}
-                  height={600}
-                  className="w-full h-auto max-h-[80vh] object-contain"
-                />
-              ) : selectedMedia.type === "videolink" ? (
-                <video
-                  className="w-full h-96 object-cover"
-                  src={selectedMedia.src}
-                  controls
-                  autoPlay
-                  muted
+            {/* Media Content */}
+            <div className="relative aspect-[4/3] sm:aspect-video w-full bg-black">
+              {activeMedia.type === "video" && activeMedia.youtubeId ? (
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube-nocookie.com/embed/${activeMedia.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                  title={activeMedia.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 />
               ) : (
-                <iframe
-                  className="w-full h-96"
-                  src={`https://www.youtube.com/embed/${selectedMedia.key}?autoplay=1`}
-                  title={`YouTube video: ${selectedMedia.alt}`}
-                  allowFullScreen
+                <Image
+                  src={activeMedia.src || "/hero-bg.jpg"}
+                  alt={activeMedia.title}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
                 />
               )}
             </div>
 
-            {selectedMedia.alt && (
-              <p className="text-white text-center mt-4 text-lg">
-                {selectedMedia.alt}
-              </p>
-            )}
+            {/* Modal Navigation Footer */}
+            <div className="flex items-center justify-between p-4 border-t border-white/10 bg-black/50 text-xs text-[#aea493]">
+              <button
+                type="button"
+                onClick={prevLightbox}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-[#fff7e9] transition-colors"
+              >
+                <ChevronLeft size={16} />
+                <span>Previous</span>
+              </button>
+
+              <span>
+                {lightboxIndex + 1} of {filteredItems.length}
+              </span>
+
+              <button
+                type="button"
+                onClick={nextLightbox}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-[#fff7e9] transition-colors"
+              >
+                <span>Next</span>
+                <ChevronRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
       )}
     </section>
   );
-};
-
-export default GallerySection;
+}

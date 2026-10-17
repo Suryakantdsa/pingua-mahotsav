@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blood Donation Registration | Pingua Mahotsav 2025",
+  title: "Blood Donation Registration | 14th Pingua Mahotsav 2026",
   description:
-    "Register for blood donation camp at Pingua Mahotsav 2025. Be a hero and save lives. Organized by Pingua Mahotsav Paribar at Prathamika Swathya Kendra, Pingua.",
+    "Register for blood donation camp at 14th Pingua Mahotsav 2026. Be a hero and save lives. Organized by Pingua Mahotsav Paribar at Pingua Mahotsav Conference Hall.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   keywords: [
     "Blood Donation Pingua",
-    "Pingua Blood Donation Camp 2025",
+    "Pingua Blood Donation Camp 2026",
     "Blood Donation Dhenkanal",
     "Pingua Mahotsav Blood Donation",
     "Register Blood Donation Pingua",
@@ -22,30 +22,19 @@ export const metadata: Metadata = {
     "Blood Donation Registration",
   ],
   openGraph: {
-    title: "Blood Donation Registration | Pingua Mahotsav 2025",
+    title: "Blood Donation Registration | 14th Pingua Mahotsav 2026",
     description:
-      "Join our blood donation camp at Pingua Mahotsav 2025. Your donation can save lives. Register now!",
-    url: "https://pinguamahotsav.org/blood-donation",
+      "Join our blood donation camp at 14th Pingua Mahotsav 2026 (26 Oct 2026). Your donation can save lives. Register now!",
+    url: "https://pinguamahostav.live/blood-donation",
     siteName: "Pingua Mahotsav",
-    images: [
-      {
-        url: "https://storage.googleapis.com/pingua-mahotsav/blood_donation.PNG",
-        width: 1200,
-        height: 630,
-        alt: "Pingua Mahotsav Blood Donation Camp 2025",
-      },
-    ],
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blood Donation Registration | Pingua Mahotsav 2025",
+    title: "Blood Donation Registration | 14th Pingua Mahotsav 2026",
     description:
-      "Register for blood donation camp at Pingua Mahotsav 2025. Be a hero and save lives.",
-    images: [
-      "https://storage.googleapis.com/pingua-mahotsav/blood_donation.PNG",
-    ],
+      "Register for blood donation camp at 14th Pingua Mahotsav 2026. Be a hero and save lives.",
   },
 };
 

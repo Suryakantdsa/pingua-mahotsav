@@ -209,14 +209,13 @@ const BloodDonationPage = () => {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
             {/* Left Side - Main Title with Logo */}
             <div className="lg:flex-1">
-              <div className="flex items-center mb-4">
+              <div className="flex items-center mb-4 gap-3">
                 <Image
-                  src="https://storage.googleapis.com/pingua-mahotsav/logo_1.png"
+                  src="/logo.png"
                   alt="Pingua Mahotsav Logo"
-                  width={48}
-                  height={48}
-                  quality={100}
-                  className="rounded-full shadow-md border-2 border-orange-300 object-contain mr-4"
+                  width={52}
+                  height={52}
+                  className="rounded-full shadow-md border-2 border-orange-300 bg-white p-0.5 object-cover"
                 />
                 <Link
                   href="/"
@@ -229,7 +228,7 @@ const BloodDonationPage = () => {
 
               <div className="mb-4 lg:mb-0">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold flex items-center mb-2">
-                  <Heart className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 mr-3" />
+                  <Heart className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 mr-3 text-red-300" />
                   Blood Donation Registration
                 </h1>
                 <p className="text-red-100 text-lg md:text-xl">
@@ -247,7 +246,7 @@ const BloodDonationPage = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-sm sm:text-base">
-                      October 07, 2025
+                      October 26, 2026
                     </p>
                     <p className="text-red-100 text-xs sm:text-sm">
                       9:00 AM - 2:00 PM

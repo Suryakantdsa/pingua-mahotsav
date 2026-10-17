@@ -1,191 +1,217 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useFormStore } from "@/store/useFormStore";
+import {
+  Calendar,
+  Image as ImageIcon,
+  MapPin,
+  Shield,
+  Menu,
+  X,
+  Droplet,
+  Sparkles,
+} from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { setShowBloodDonationForm } = useFormStore();
 
-  // Handle scroll effect and active section
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
 
-      // Update active section based on scroll position
-      const sections = ["home", "events", "map", "organizers", "contact"];
-      const current = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+      const sections = ["home", "events", "gallery", "contact"];
+      const scrollPos = window.scrollY + 200;
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(section);
+            break;
+          }
         }
-        return false;
-      });
-      if (current) setActiveSection(current);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { href: "#home", label: "Home", icon: "🏠" },
-    { href: "#events", label: "Events", icon: "🎭" },
-    { href: "#map", label: "Venue Map", icon: "🗺️" },
-    { href: "#organizers", label: "Organizers", icon: "👥" },
-    { href: "#contact", label: "Contact", icon: "📞" },
+  const navLinks = [
+    { href: "/#home", label: "Home", labelOdia: "ମୁଖ୍ୟ", icon: Sparkles },
+    { href: "/#events", label: "Schedule", labelOdia: "କାର୍ଯ୍ୟସୂଚୀ", icon: Calendar },
+    { href: "/#gallery", label: "Gallery", labelOdia: "ଗ୍ୟାଲେରୀ", icon: ImageIcon },
+    { href: "/cultural-registration", label: "Cultural Form", labelOdia: "ସାଂସ୍କୃତିକ", icon: Sparkles },
+    { href: "/blood-registration", label: "Blood Camp", labelOdia: "ରକ୍ତଦାନ", icon: Droplet },
+    { href: "/#contact", label: "Contact", labelOdia: "ଯୋଗାଯୋଗ", icon: MapPin },
   ];
-
-  const MobileMenu = () => (
-    <div
-      className={`md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-lg shadow-lg border-b border-orange-200 transition-all duration-300 ${
-        isMobileMenuOpen
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 -translate-y-4 pointer-events-none"
-      }`}
-    >
-      <div className="px-4 py-4 space-y-4">
-        {navItems.map((item) => (
-          <a
-            key={item.href}
-            href={item.href}
-            className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-              activeSection === item.href.slice(1)
-                ? "bg-orange-100 text-orange-700 font-semibold"
-                : "text-gray-700 hover:bg-orange-50"
-            }`}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <span className="text-lg">{item.icon}</span>
-            <span className="text-base font-medium">{item.label}</span>
-          </a>
-        ))}
-        {/* CTA Button in Mobile Menu */}
-        {/* <button className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-200 transform hover:scale-105 shadow-lg">
-          🎉 Register Now
-        </button> */}
-      </div>
-    </div>
-  );
 
   return (
     <>
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-orange-200 py-1"
-            : "bg-white/80 backdrop-blur-sm shadow-md border-b border-orange-100 py-2"
+            ? "bg-[#030202]/95 backdrop-blur-md border-b border-white/[0.08] py-3 shadow-2xl"
+            : "bg-gradient-to-b from-[#030202]/90 via-[#030202]/40 to-transparent py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo + Title */}
-            <div className="flex items-center space-x-3">
-              <div className="relative">
+          <div className="flex items-center justify-between">
+            {/* Festival Brand / Logo */}
+            <Link
+              href="/#home"
+              className="group flex items-center gap-3 focus:outline-none rounded-xl"
+            >
+              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-[#dc8513]/60 bg-black p-0.5 shadow-md">
                 <Image
-                  src="https://storage.googleapis.com/pingua-mahotsav/logo_1.png"
-                  alt="Pingua Mahotsav Logo"
-                  width={isScrolled ? 48 : 56}
-                  height={isScrolled ? 48 : 56}
-                  quality={100}
-                  className={`rounded-full shadow-md border-2 border-orange-300 object-contain transition-all duration-300 ${
-                    isScrolled ? "scale-90" : "scale-100"
-                  }`}
+                  src="/logo.png"
+                  alt="୧୪ ତମ ପିଙ୍ଗୁଆ ମହୋତ୍ସବ ୨୦୨୬"
+                  width={44}
+                  height={44}
+                  className="w-full h-full object-cover rounded-full"
+                  priority
                 />
-                {/* Animated ping effect */}
-                <div className="absolute inset-0 rounded-full border-2 border-orange-400 animate-ping opacity-0"></div>
               </div>
 
               <div className="flex flex-col">
-                <span
-                  className={`font-extrabold text-orange-800 tracking-wide transition-all duration-300 ${
-                    isScrolled ? "text-lg" : "text-xl"
-                  }`}
-                >
-                  Pingua Mahotsav
+                <span className="font-odia text-sm sm:text-base font-bold text-[#fff7e9] tracking-wide group-hover:text-[#cca146] transition-colors leading-tight">
+                  ୧୪ ତମ ପିଙ୍ଗୁଆ ମହୋତ୍ସବ
                 </span>
-                <span className="text-xs text-orange-600 font-medium -mt-1">
-                  13th Annual Celebration
+                <span className="font-cinzel text-[10px] sm:text-[11px] font-medium text-[#cca146] tracking-[0.18em] uppercase">
+                  Pingua Mahotsav 2026
                 </span>
               </div>
+            </Link>
+
+            {/* Desktop Navigation Links (Isha Minimalist Pill Style) */}
+            <nav className="hidden lg:flex items-center gap-1 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+              {navLinks.map((item) => {
+                const Icon = item.icon;
+                const sectionId = item.href.startsWith("/#")
+                  ? item.href.replace("/#", "")
+                  : item.href.startsWith("#")
+                  ? item.href.slice(1)
+                  : "";
+                const isActive = Boolean(sectionId && activeSection === sectionId);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs tracking-wider uppercase transition-all duration-200 ${
+                      isActive
+                        ? "text-[#dc8513] font-bold bg-white/[0.08] border border-[#dc8513]/40 shadow-sm shadow-[#dc8513]/10"
+                        : "text-[#dfd6c4]/80 hover:text-[#fff7e9] hover:bg-white/[0.04]"
+                    }`}
+                  >
+                    <Icon size={13} className={isActive ? "text-[#dc8513]" : "text-[#dfd6c4]/60"} />
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Actions: Blood Donation CTA & Admin Link */}
+            <div className="hidden sm:flex items-center gap-3">
+              <Link
+                href="/blood-registration"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold text-white bg-[#dc2626] hover:bg-[#ef4444] transition-all cursor-pointer shadow-lg shadow-red-950/40 tracking-wider uppercase hover:scale-105 active:scale-95"
+              >
+                <Droplet size={13} className="fill-white" />
+                <span>Donate Blood</span>
+              </Link>
+
+              <Link
+                href="/admin"
+                className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-black/60 border border-white/20 text-[#dfd6c4] hover:text-[#dc8513] hover:border-[#dc8513] transition-all"
+                title="Admin Command Center"
+              >
+                <Shield size={14} />
+              </Link>
             </div>
 
-            {/* Desktop Navigation Links */}
-            <div className="hidden md:flex items-center space-x-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`flex items-center space-x-1 px-3 py-2 rounded-full transition-all duration-200 group ${
-                    activeSection === item.href.slice(1)
-                      ? "bg-orange-100 text-orange-700 font-semibold shadow-inner"
-                      : "text-gray-700 hover:text-orange-600 hover:bg-orange-50"
-                  }`}
-                >
-                  <span className="text-sm">{item.icon}</span>
-                  <span className="text-base font-medium relative">
-                    {item.label}
-                    {/* Hover underline effect */}
-                    <span
-                      className={`absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full ${
-                        activeSection === item.href.slice(1) ? "w-full" : ""
-                      }`}
-                    ></span>
-                  </span>
-                </a>
-              ))}
+            {/* Mobile Hamburger Toggle */}
+            <div className="flex sm:hidden items-center gap-2">
+              <Link
+                href="/blood-registration"
+                className="p-2 rounded-full bg-[#dc2626] text-white text-xs font-bold shadow-md shadow-red-950/40"
+                aria-label="Donate Blood"
+              >
+                <Droplet size={14} className="fill-white" />
+              </Link>
 
-              {/* CTA Button */}
-              {/* <button className="ml-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-full font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
-                <span>🎉</span>
-                <span>Register</span>
-              </button> */}
+              <button
+                type="button"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-full bg-black/60 border border-white/20 text-[#fff7e9] hover:border-[#dc8513]/40 transition-colors"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              </button>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden flex flex-col space-y-1.5 p-2 rounded-lg hover:bg-orange-50 transition-colors duration-200"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <span
-                className={`w-6 h-0.5 bg-orange-600 transition-all duration-300 ${
-                  isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
-                }`}
-              ></span>
-              <span
-                className={`w-6 h-0.5 bg-orange-600 transition-all duration-300 ${
-                  isMobileMenuOpen ? "opacity-0" : "opacity-100"
-                }`}
-              ></span>
-              <span
-                className={`w-6 h-0.5 bg-orange-600 transition-all duration-300 ${
-                  isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
-                }`}
-              ></span>
-            </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <MobileMenu />
-      </nav>
+        {/* Mobile Dropdown Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden bg-[#030202]/98 backdrop-blur-xl border-b border-white/10 px-4 pt-3 pb-6 space-y-2 mt-3 animate-in fade-in slide-in-from-top duration-200">
+            {navLinks.map((item) => {
+              const Icon = item.icon;
+              const sectionId = item.href.startsWith("/#")
+                ? item.href.replace("/#", "")
+                : item.href.startsWith("#")
+                ? item.href.slice(1)
+                : "";
+              const isActive = Boolean(sectionId && activeSection === sectionId);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm tracking-wider uppercase transition-colors ${
+                    isActive
+                      ? "text-[#dc8513] font-bold bg-[#dc8513]/10 border border-[#dc8513]/30"
+                      : "text-[#dfd6c4] hover:bg-white/5"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon size={16} className={isActive ? "text-[#dc8513]" : "text-[#dfd6c4]/60"} />
+                    <span>{item.label}</span>
+                  </div>
+                  <span className="text-xs font-odia text-[#cca146]">{item.labelOdia}</span>
+                </Link>
+              );
+            })}
 
-      {/* Spacer for fixed navbar */}
-      <div className="h-16"></div>
+            <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
+              <Link
+                href="/blood-registration"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full py-3 rounded-full bg-[#dc2626] hover:bg-[#ef4444] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-950/40"
+              >
+                <Droplet size={14} className="fill-white" />
+                <span>Register for Blood Donation (A4 Pass)</span>
+              </Link>
 
-      <style jsx>{`
-        @keyframes ping-small {
-          75%,
-          100% {
-            transform: scale(1.1);
-            opacity: 0;
-          }
-        }
-        .animate-ping {
-          animation: ping-small 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-        }
-      `}</style>
+              <Link
+                href="/admin"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full py-2.5 rounded-full bg-white/[0.04] border border-white/10 text-xs text-[#dfd6c4] uppercase tracking-wider flex items-center justify-center gap-2"
+              >
+                <Shield size={14} />
+                <span>Admin Command Center</span>
+              </Link>
+            </div>
+          </div>
+        )}
+      </header>
     </>
   );
 };

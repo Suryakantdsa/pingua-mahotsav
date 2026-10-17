@@ -1,15 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Noto+Sans+Oriya:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
-/* Define base variables */
+/* Isha Mahashivratri Color & Typography Tokens */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --color-isha-black: #030202;
+  --color-isha-surface: #0a080d;
+  --color-isha-card: #0f0b14;
+  --color-isha-ivory: #fff7e9;
+  --color-isha-sand: #dfd6c4;
+  --color-isha-stone: #aea493;
+  --color-isha-saffron: #dc8513;
+  --color-isha-gold: #cca146;
+  --color-isha-amber: #ffa735;
+  --foreground-rgb: 255, 247, 233;
+  --background-start-rgb: 3, 2, 2;
+  --background-end-rgb: 3, 2, 2;
+  --radius: 0.75rem;
+  --background: oklch(0.05 0 0);
+  --foreground: oklch(0.98 0.01 80);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -194,7 +204,92 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Outfit', sans-serif;
   }
 }
+
+/* Cultural & Cinematic Font Families */
+.font-cinzel {
+  font-family: 'Cinzel', Georgia, serif;
+}
+
+.font-serif,
+.font-merriweather {
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+.font-odia {
+  font-family: 'Noto Sans Oriya', 'Kalinga', sans-serif;
+}
+
+.font-outfit {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Festival Gradients & Palette */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fff2cc 0%, #f7c955 45%, #d6941a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-vermilion-gradient {
+  background: linear-gradient(135deg, #ffa07a 0%, #ea580c 50%, #c23105 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-festival-plum {
+  background: radial-gradient(ellipse at top, #240d33 0%, #150620 50%, #0c0812 100%);
+}
+
+.bg-festival-dark {
+  background: #0f0b14;
+}
+
+.border-gold-subtle {
+  border-color: rgba(245, 196, 82, 0.22);
+}
+
+.border-gold-bright {
+  border-color: rgba(245, 196, 82, 0.55);
+}
+
+.shadow-gold-glow {
+  box-shadow: 0 0 25px -5px rgba(245, 196, 82, 0.25);
+}
+
+.shadow-vermilion-glow {
+  box-shadow: 0 0 25px -5px rgba(234, 88, 12, 0.3);
+}
+
+/* Subtle temple motif pattern overlay */
+.bg-temple-pattern {
+  background-image: radial-gradient(rgba(245, 196, 82, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes loaderProgress {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(20%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-loader-progress {
+  animation: loaderProgress 1.8s ease-in-out infinite;
+}
+

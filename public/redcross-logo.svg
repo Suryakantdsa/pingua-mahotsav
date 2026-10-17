@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <!-- Circular Path for Text -->
+    <path id="textCircleTop" d="M 120, 120 m -86, 0 a 86,86 0 1,1 172,0" fill="none" />
+    <path id="textCircleBottom" d="M 120, 120 m 86, 0 a 86,86 0 1,1 -172,0" fill="none" />
+    
+    <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cca146" />
+      <stop offset="50%" stop-color="#fdf3c7" />
+      <stop offset="100%" stop-color="#b8860b" />
+    </linearGradient>
+
+    <radialGradient id="redGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="70%" stop-color="#b91c1c" />
+      <stop offset="100%" stop-color="#7f1d1d" />
+    </radialGradient>
+  </defs>
+
+  <!-- Outer Ring with Gold Trim -->
+  <circle cx="120" cy="120" r="115" fill="#ffffff" stroke="url(#goldBorder)" stroke-width="4" />
+  <circle cx="120" cy="120" r="110" fill="none" stroke="#b91c1c" stroke-width="2" />
+  
+  <!-- Outer Red Band -->
+  <circle cx="120" cy="120" r="98" fill="url(#redGlow)" stroke="url(#goldBorder)" stroke-width="2" />
+
+  <!-- Circular Text in White -->
+  <text font-family="'Cinzel', 'Arial', sans-serif" font-size="10.5" font-weight="900" fill="#ffffff" letter-spacing="1.5">
+    <textPath href="#textCircleTop" startOffset="50%" text-anchor="middle">
+      INDIAN RED CROSS SOCIETY
+    </textPath>
+  </text>
+  <text font-family="'Cinzel', 'Arial', sans-serif" font-size="9" font-weight="800" fill="#fef08a" letter-spacing="1.2">
+    <textPath href="#textCircleBottom" startOffset="50%" text-anchor="middle">
+      ★ DHENKANAL DISTRICT BRANCH ★
+    </textPath>
+  </text>
+
+  <!-- Inner White Disc -->
+  <circle cx="120" cy="120" r="64" fill="#ffffff" stroke="url(#goldBorder)" stroke-width="3" />
+  <circle cx="120" cy="120" r="60" fill="#fff5f5" />
+
+  <!-- Official Red Cross Symbol (Equilateral Greek Cross) -->
+  <g fill="#dc2626" stroke="#991b1b" stroke-width="1.5" stroke-linejoin="round">
+    <!-- Vertical bar -->
+    <rect x="106" y="75" width="28" height="90" rx="3" />
+    <!-- Horizontal bar -->
+    <rect x="75" y="106" width="90" height="28" rx="3" />
+  </g>
+
+  <!-- Decorative Accent Stars -->
+  <circle cx="120" cy="120" r="3" fill="#ffffff" opacity="0.8" />
+</svg>

@@ -1,9 +1,6 @@
-// next.config.ts or next.config.js
-
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* other config options */
   images: {
     remotePatterns: [
       {
@@ -13,7 +10,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "storage.googleapis.com",
+        hostname: "images.unsplash.com",
         pathname: "/**",
       },
       {

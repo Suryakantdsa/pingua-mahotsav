@@ -1,13 +1,7 @@
 "use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -18,11 +12,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Award, X } from "lucide-react";
+import { Award, X, Loader2 } from "lucide-react";
 import { useFormStore } from "@/store/useFormStore";
 
-const SponsorForm = () => {
-  const { showSponsorForm, setShowSponsorForm } = useFormStore();
+export default function SponsorForm() {
+  const { showSponsorForm, setShowSponsorForm, setSuccessData } = useFormStore();
 
   const handleClose = () => setShowSponsorForm(false);
 
@@ -35,7 +29,9 @@ const SponsorForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [ack, setAck] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  if (!showSponsorForm) return null;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,9 +39,15 @@ const SponsorForm = () => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.type || !formData.phone) {
+      setErrorMessage("Please fill all required fields.");
+      return;
+    }
+
     setLoading(true);
-    setAck("");
+    setErrorMessage("");
 
     try {
       const res = await fetch("/api/sponsor", {
@@ -55,128 +57,171 @@ const SponsorForm = () => {
       });
       const result = await res.json();
       if (res.ok) {
-        setAck(result.message);
+        setSuccessData({
+          title: "ସହଯୋଗ ଆବେଦନ ପାଇଁ ଧନ୍ୟବାଦ!",
+          message: `Thank you, ${formData.name}! Your sponsorship interest as a ${formData.type} partner has been sent to the festival executive board.`,
+          subMessage: "Our sponsorship coordinators will contact you at " + formData.phone + " shortly.",
+          badge: `${formData.type.toUpperCase()} Partner • 14th Mahotsav 2026`,
+        });
         setFormData({ name: "", type: "", phone: "", email: "", message: "" });
+        handleClose();
       } else {
-        setAck(result.error || "Submission failed.");
+        setErrorMessage(result.error || "Submission failed. Please try again.");
       }
     } catch {
-      setAck("Something went wrong.");
+      setErrorMessage("Network error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  if (!showSponsorForm) return null;
-
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4"
       onClick={handleClose}
     >
-      <Card
-        className="w-full max-w-md max-h-[90vh] overflow-y-auto relative modal-scroll"
+      <div
+        className="w-full max-w-md rounded-3xl bg-[#160a22] border-2 border-amber-500/40 shadow-2xl p-6 sm:p-8 text-white relative max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Icon */}
         <button
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
           onClick={handleClose}
+          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-300 hover:text-white transition-all cursor-pointer"
+          aria-label="Close form"
         >
-          <X className="h-5 w-5" />
+          <X size={18} />
         </button>
 
-        <CardHeader>
-          <CardTitle className="flex items-center text-orange-600">
-            <Award className="h-5 w-5 mr-2" />
-            Become a Sponsor
-          </CardTitle>
-          <CardDescription>
-            Join us in supporting our cultural heritage
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="space-y-4">
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
+            <Award size={22} />
+          </div>
           <div>
-            <Label htmlFor="name">Organization/Individual Name</Label>
+            <h3 className="text-xl font-bold font-odia text-white">
+              ପୃଷ୍ଠପୋଷକ ଆବେଦନ
+            </h3>
+            <span className="text-xs text-amber-300 font-sans">Sponsorship & Partnership</span>
+          </div>
+        </div>
+
+        <p className="text-xs text-slate-300 leading-relaxed font-sans mb-5">
+          Support the 14th Pingua Mahotsav 2026 as a proud patron, title sponsor, or media partner.
+        </p>
+
+        {errorMessage && (
+          <div className="mb-4 p-3 rounded-xl bg-red-500/20 border border-red-500/40 text-xs text-red-200">
+            {errorMessage}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4 text-xs sm:text-sm">
+          <div>
+            <Label htmlFor="name" className="text-slate-300 mb-1 block">
+              Organization / Individual Name *
+            </Label>
             <Input
               id="name"
-              placeholder="Enter your name or organization"
+              placeholder="e.g. Sanskari Group / Enterprise"
               value={formData.name}
               onChange={handleChange}
+              className="bg-black/40 border-white/10 text-white rounded-xl focus:border-amber-400"
+              required
             />
           </div>
 
           <div>
-            <Label>Sponsorship Type</Label>
+            <Label htmlFor="type" className="text-slate-300 mb-1 block">
+              Sponsorship Tier *
+            </Label>
             <Select
               value={formData.type}
               onValueChange={(val) => setFormData({ ...formData, type: val })}
             >
-              <SelectTrigger>
-                <SelectValue placeholder="Select sponsorship level" />
+              <SelectTrigger className="bg-black/40 border-white/10 text-white rounded-xl">
+                <SelectValue placeholder="Select Tier" />
               </SelectTrigger>
-              <SelectContent>
-                {["platinum", "gold", "silver", "bronze", "supporter"].map(
-                  (level) => (
-                    <SelectItem key={level} value={level}>
-                      {level.charAt(0).toUpperCase() + level.slice(1)}
-                    </SelectItem>
-                  )
-                )}
+              <SelectContent className="bg-[#180a24] text-white border-white/10">
+                <SelectItem value="platinum" className="hover:bg-white/10">
+                  Platinum Sponsor (ପ୍ଲାଟିନମ୍ ପୃଷ୍ଠପୋଷକ)
+                </SelectItem>
+                <SelectItem value="gold" className="hover:bg-white/10">
+                  Gold Partner (ଗୋଲ୍ଡ ସହଯୋଗୀ)
+                </SelectItem>
+                <SelectItem value="silver" className="hover:bg-white/10">
+                  Silver Cultural Partner (ସିଲଭର ପୃଷ୍ଠପୋଷକ)
+                </SelectItem>
+                <SelectItem value="community" className="hover:bg-white/10">
+                  Community Patron (ଗ୍ରାମ୍ୟ ହିତୈଷୀ)
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-          <div>
-            <Label htmlFor="phone">Contact Number</Label>
-            <Input
-              id="phone"
-              placeholder="Enter your phone number"
-              value={formData.phone}
-              onChange={handleChange}
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label htmlFor="phone" className="text-slate-300 mb-1 block">
+                Phone Number *
+              </Label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="10-digit number"
+                value={formData.phone}
+                onChange={handleChange}
+                className="bg-black/40 border-white/10 text-white rounded-xl focus:border-amber-400"
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="email" className="text-slate-300 mb-1 block">
+                Email Address
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="info@brand.com"
+                value={formData.email}
+                onChange={handleChange}
+                className="bg-black/40 border-white/10 text-white rounded-xl focus:border-amber-400"
+              />
+            </div>
           </div>
 
           <div>
-            <Label htmlFor="email">Email Address</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="message">Message (Optional)</Label>
+            <Label htmlFor="message" className="text-slate-300 mb-1 block">
+              Message or Specific Proposal
+            </Label>
             <Textarea
               id="message"
-              placeholder="Any specific requirements or message..."
+              placeholder="Tell us how you would like to collaborate or sponsor..."
               value={formData.message}
               onChange={handleChange}
+              rows={3}
+              className="bg-black/40 border-white/10 text-white rounded-xl focus:border-amber-400 resize-none"
             />
           </div>
 
-          {ack && <p className="text-center text-green-600">{ack}</p>}
-
-          <div className="flex space-x-2 pt-4">
+          <div className="pt-2">
             <Button
-              className="flex-1 bg-orange-600 hover:bg-orange-700"
-              onClick={handleSubmit}
+              type="submit"
               disabled={loading}
+              className="w-full py-3 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-slate-950 font-extrabold shadow-lg hover:brightness-110 transition-all cursor-pointer"
             >
-              {loading ? "Submitting..." : "Submit Sponsorship Request"}
-            </Button>
-            <Button variant="outline" className="flex-1" onClick={handleClose}>
-              Cancel
+              {loading ? (
+                <>
+                  <Loader2 className="animate-spin mr-2" size={16} />
+                  <span>Submitting Proposal...</span>
+                </>
+              ) : (
+                <span>Submit Sponsorship Proposal</span>
+              )}
             </Button>
           </div>
-        </CardContent>
-      </Card>
+        </form>
+      </div>
     </div>
   );
-};
-
-export default SponsorForm;
+}
