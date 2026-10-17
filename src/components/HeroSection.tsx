@@ -100,13 +100,13 @@ export default function HeroSection() {
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-35 scale-105"
+          className="object-cover opacity-100 scale-105"
         />
 
         {/* Video Iframe with Over-Crop Scaling (Crops out top & bottom YouTube controls completely) */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden pointer-events-none">
           <iframe
-            className="w-[140vw] h-[78.75vw] min-h-[140vh] min-w-[248.88vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover scale-125 sm:scale-135 md:scale-150 pointer-events-none opacity-50"
+            className="w-[140vw] h-[78.75vw] min-h-[140vh] min-w-[248.88vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover scale-125 sm:scale-135 md:scale-150 pointer-events-none opacity-100"
             src={videoSrc}
             title="14th Pingua Mahotsav Cultural Procession"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
